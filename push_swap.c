@@ -120,7 +120,7 @@ void printStack(stack *s)
     printf("The stack elements are :");
     while (s)
     {
-        printf("%d ", s->data);
+        printf("\n%d ", s->data);
         s = s->link;
     }
     printf("\n");
@@ -134,11 +134,16 @@ int main()
     s2 = ft_stacknew(3);
    // s3 = ft_stacknew(2);
     push(&s2, 7);
-    push(&s1, -4);
-    // push(&s1, 3);
-    // push(&s1, 2);
+    push(&s1, 8);
+    push(&s1, 3);
+    push(&s2, 2);
     //pop(&s1);
     //ft_ss(s1,s2);
+    //ft_pa(&s1,&s2);
+    //ft_pb(&s1,&s2);
+    //ft_rotate(&s1);
+    ft_ra(&s1);
+    //ft_rr(&s1,&s2);
     printStack(s1);
     printStack(s2);
     return (0);
