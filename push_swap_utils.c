@@ -27,7 +27,7 @@ void    ft_sa(stack *a)
 
     if (!a || a->link == NULL)
     {
-        printf("stack cannot be swipped !");
+        printf("stack a cannot be swipped !");
         exit(1);
     }
     else
@@ -39,7 +39,7 @@ void    ft_sb(stack *b)
 
     if (!b || b->link == NULL)
     {
-        printf("stack cannot be swipped !");
+        printf("stack b cannot be swipped !");
         exit(1);
     }
     else
@@ -52,7 +52,66 @@ void    ft_ss(stack *a, stack *b)
     ft_sa(a);
 }
 
-void    ft_pa(stack *a, stack *b)
+void    ft_pa(stack **a, stack **b)
 {
-    
+    if (!b)
+    {
+         printf("b is empty");
+        exit(1);
+    }
+    push(a,(*b)->data);
+    pop(b);
+}
+
+void    ft_pb(stack **a, stack **b)
+{
+    if (!b)
+    {
+         printf("b is empty");
+        exit(1);
+    }
+    push(b,(*a)->data);
+    pop(a);
+}
+
+void    ft_rotate(stack **s)
+{
+    stack   *tmp;
+    stack   *node;
+
+    tmp = *s;
+    node = tmp;
+    while (tmp->link != NULL)
+        tmp = tmp->link;
+    tmp->link = *s;
+    *s = node->link;
+    node->link = NULL;
+}
+
+void    ft_ra(stack **a)
+{
+    if (!a || !*a)
+    {
+        printf("stack is empty");
+        exit(1);
+    }
+    else
+        ft_rotate(a);
+}
+
+void    ft_rb(stack **b)
+{
+    if (!b || !*b)
+    {
+        printf("stack is empty");
+        exit(1);
+    }
+    else
+        ft_rotate(b);
+}
+
+void    ft_rr(stack **a, stack **b)
+{
+    ft_ra(a);
+    ft_rb(b);
 }
