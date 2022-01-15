@@ -20,9 +20,16 @@ typedef struct Stack
     struct  Stack* link;
 }stack;
 
+stack *pop(stack **s);
+stack *push(stack **s, int data);
+
 void    ft_swap(stack *a);
 void    ft_sa(stack *s);
 void    ft_sb(stack *b);
 void    ft_ss(stack *a, stack *b);
-
-
+void    ft_pa(stack **a, stack **b);
+void    ft_pb(stack **a, stack **b);
+void    ft_rotate(stack **s);
+void    ft_ra(stack **a);
+void    ft_rb(stack **b);
+void    ft_rr(stack **a,stack **b);
