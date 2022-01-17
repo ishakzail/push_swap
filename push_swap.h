@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "libft/libft.h"
+
 typedef struct Stack
 {
     int     data;
@@ -33,3 +35,12 @@ void    ft_rotate(stack **s);
 void    ft_ra(stack **a);
 void    ft_rb(stack **b);
 void    ft_rr(stack **a,stack **b);
+stack   *stacklast(stack **s);
+void    reverse(stack **s);
+void    pop_back(stack **s);
+void    pop_front(stack **s);
+void    push_back(stack **s, int data);
+void    push_front(stack **s, int data);
+void    ft_rra(stack **a);
+void    ft_rrb(stack **b);
+void    ft_rrr(stack **a, stack **b);
