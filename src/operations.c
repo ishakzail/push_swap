@@ -14,9 +14,9 @@
 #include "../includes/push_swap.h"
 
 
-stack   *stacklast(stack **s)
+t_stack   *stacklast(t_stack **s)
 {
-    stack   *tmp;
+    t_stack   *tmp;
     if (!*s)
         return (NULL);
     tmp = *s;
@@ -25,13 +25,13 @@ stack   *stacklast(stack **s)
     return (tmp);
 }
 
-void    push_front(stack **s, int data)
+void    push_front(t_stack **s, int data)
 {
-    stack *top;
-    top = (stack *)malloc(sizeof(*top));
+    t_stack *top;
+    top = (t_stack *)malloc(sizeof(*top));
     if (!top)
     {
-        printf("Stack overflow !");
+        printf("t_stack overflow !");
         exit(1);
     }
     top->data = data;
@@ -41,9 +41,9 @@ void    push_front(stack **s, int data)
     //free(top);
 }
 
-void    push_back(stack **s, int data)
+void    push_back(t_stack **s, int data)
 {
-    stack   *tmp;
+    t_stack   *tmp;
     if (!s)
         return ;
     if (*s)
@@ -56,10 +56,10 @@ void    push_back(stack **s, int data)
         tmp = *s;
 }
 
-void    pop_back(stack **s)
+void    pop_back(t_stack **s)
 {
-    stack   *tmp;
-    stack   *prev;
+    t_stack   *tmp;
+    t_stack   *prev;
     
     tmp = *s;
     while (tmp->link)
@@ -72,15 +72,15 @@ void    pop_back(stack **s)
 
 }
 
-void    pop_front(stack **s)
+void    pop_front(t_stack **s)
 {
-    stack *tmp;
+    t_stack *tmp;
     tmp = *s;
     *s = (*s)->link;
     free(tmp);
 }
 
-void    ft_swap(stack *s)
+void    ft_swap(t_stack *s)
 {
     int tmpvar;
 
@@ -89,37 +89,37 @@ void    ft_swap(stack *s)
     s->link->data = tmpvar;
 }
 
-void    ft_sa(stack *a)
+void    ft_sa(t_stack *a)
 {
 
     if (!a || a->link == NULL)
     {
-        printf("stack a cannot be swipped !");
+        printf("t_stack a cannot be swipped !");
         exit(1);
     }
     else
         ft_swap(a);
 }
 
-void    ft_sb(stack *b)
+void    ft_sb(t_stack *b)
 {
 
     if (!b || b->link == NULL)
     {
-        printf("stack b cannot be swipped !");
+        printf("t_stack b cannot be swipped !");
         exit(1);
     }
     else
         ft_swap(b);
 }
 
-void    ft_ss(stack *a, stack *b)
+void    ft_ss(t_stack *a, t_stack *b)
 {
     ft_sb(b);
     ft_sa(a);
 }
 
-void    ft_pa(stack **a, stack **b)
+void    ft_pa(t_stack **a, t_stack **b)
 {
     if (!b)
     {
@@ -130,7 +130,7 @@ void    ft_pa(stack **a, stack **b)
     pop_front(b);
 }
 
-void    ft_pb(stack **a, stack **b)
+void    ft_pb(t_stack **a, t_stack **b)
 {
     if (!b)
     {
@@ -141,10 +141,10 @@ void    ft_pb(stack **a, stack **b)
     pop_front(a);
 }
 
-void    ft_rotate(stack **s)
+void    ft_rotate(t_stack **s)
 {
-    stack   *first;
-    stack   *last;
+    t_stack   *first;
+    t_stack   *last;
 
     first = *s;
     last = *s;
@@ -157,66 +157,66 @@ void    ft_rotate(stack **s)
     last->link = first;
 }
 
-void    ft_ra(stack **a)
+void    ft_ra(t_stack **a)
 {
     if (!a || !*a)
     {
-        printf("stack is empty");
+        printf("t_stack is empty");
         exit(1);
     }
     else
         ft_rotate(a);
 }
 
-void    ft_rb(stack **b)
+void    ft_rb(t_stack **b)
 {
     if (!b || !*b)
     {
-        printf("stack is empty");
+        printf("t_stack is empty");
         exit(1);
     }
     else
         ft_rotate(b);
 }
 
-void    ft_rr(stack **a, stack **b)
+void    ft_rr(t_stack **a, t_stack **b)
 {
     ft_ra(a);
     ft_rb(b);
 }
 
-void    reverse(stack **s)
+void    reverse(t_stack **s)
 {
-    stack   *tmp;
+    t_stack   *tmp;
 
     tmp = stacklast(s);
     push_front(s,tmp->data);
     pop_back(s);
 }
 
-void    ft_rra(stack **a)
+void    ft_rra(t_stack **a)
 {
     if (!a || !*a)
     {
-        printf("stack is empty");
+        printf("t_stack is empty");
         exit(1);
     }
     else
         reverse(a);
 }
 
-void    ft_rrb(stack **b)
+void    ft_rrb(t_stack **b)
 {
     if (!b || !*b)
     {
-        printf("stack is empty");
+        printf("t_stack is empty");
         exit(1);
     }
     else
         reverse(b);
 }
 
-void ft_rrr(stack **a, stack **b)
+void ft_rrr(t_stack **a, t_stack **b)
 {
     ft_rra(a);
     ft_rrb(b);

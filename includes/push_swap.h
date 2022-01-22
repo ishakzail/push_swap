@@ -16,31 +16,31 @@
 
 #include "libft/libft.h"
 
-typedef struct Stack
+typedef struct stack
 {
     int     data;
-    struct  Stack* link;
-}stack;
+    struct  stack* link;
+}t_stack;
 
-stack *pop(stack **s);
-stack *push(stack **s, int data);
+t_stack *pop(t_stack **s);
+t_stack *push(t_stack **s, int data);
 
-void    ft_swap(stack *a);
-void    ft_sa(stack *s);
-void    ft_sb(stack *b);
-void    ft_ss(stack *a, stack *b);
-void    ft_pa(stack **a, stack **b);
-void    ft_pb(stack **a, stack **b);
-void    ft_rotate(stack **s);
-void    ft_ra(stack **a);
-void    ft_rb(stack **b);
-void    ft_rr(stack **a,stack **b);
-stack   *stacklast(stack **s);
-void    reverse(stack **s);
-void    pop_back(stack **s);
-void    pop_front(stack **s);
-void    push_back(stack **s, int data);
-void    push_front(stack **s, int data);
-void    ft_rra(stack **a);
-void    ft_rrb(stack **b);
-void    ft_rrr(stack **a, stack **b);
+void    ft_swap(t_stack *a);
+void    ft_sa(t_stack *s);
+void    ft_sb(t_stack *b);
+void    ft_ss(t_stack *a, t_stack *b);
+void    ft_pa(t_stack **a, t_stack **b);
+void    ft_pb(t_stack **a, t_stack **b);
+void    ft_rotate(t_stack **s);
+void    ft_ra(t_stack **a);
+void    ft_rb(t_stack **b);
+void    ft_rr(t_stack **a,t_stack **b);
+t_stack   *stacklast(t_stack **s);
+void    reverse(t_stack **s);
+void    pop_back(t_stack **s);
+void    pop_front(t_stack **s);
+void    push_back(t_stack **s, int data);
+void    push_front(t_stack **s, int data);
+void    ft_rra(t_stack **a);
+void    ft_rrb(t_stack **b);
+void    ft_rrr(t_stack **a, t_stack **b);

@@ -13,20 +13,20 @@
 
 #include "../includes/push_swap.h"
 
-stack    *ft_stacknew(int data)
+t_stack    *ft_stacknew(int data)
 {
-    stack    *tmp;
+    t_stack    *tmp;
 
-    tmp = (stack *)malloc(sizeof(*tmp));
+    tmp = (t_stack *)malloc(sizeof(*tmp));
     if (!tmp)
         return (NULL);
     tmp->data = data;
     tmp->link = NULL;
-    //printf("stack created successfully !");
+    //printf("t_stack created successfully !");
     return (tmp);
 }
 
-void printStack(stack **s)
+void printStack(t_stack **s)
 {
     if (s == NULL || !*s)
     {
@@ -45,7 +45,7 @@ void printStack(stack **s)
 int main(int ac, char **av)
 {
 
-    stack *a , *b;
+    t_stack *a , *b;
     int i;
     int var;
 
@@ -54,7 +54,7 @@ int main(int ac, char **av)
     //ft_pa(&b,&a);
     if (ac > 1)
     {
-        while (ac > i)
+        while (ac > ++i)
         {
             // printf("%d\n",ft_atoi(av[i]));
             // if (!ft_isdigit(ft_atoi(av[i])))
@@ -64,7 +64,6 @@ int main(int ac, char **av)
             // }
                 
             push_front(&a,ft_atoi(av[i]));
-            i++;
         }   
     }
 
@@ -81,16 +80,16 @@ int main(int ac, char **av)
     // push_front(&b, 5);
    // pop_back(&a);
     // pop_back(&b);
-    ft_ss(a,b);
+    //ft_ss(a,b);
     // ft_pa(&a,&b);
     // ft_pb(&a,&b);
     // ft_rotate(&a);
-    // ft_ra(&a);
+    ft_ra(&a);
     // ft_rr(&a,&b);
     // ft_rrr(&a,&b);
     ft_rra(&a);
     printStack(&a);
-    printStack(&b);
+    //printStack(&b);
     return (0);
 
 }
