@@ -3,3 +3,4 @@
 *.json
 *.a
 .DS_Store
+*.exe
