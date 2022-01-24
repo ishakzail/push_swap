@@ -22,6 +22,8 @@ typedef struct stack
     struct  stack* link;
 }t_stack;
 
+t_stack    *ft_stacknew(int data);
+
 t_stack *pop(t_stack **s);
 t_stack *push(t_stack **s, int data);
 
@@ -44,3 +46,12 @@ void    push_front(t_stack **s, int data);
 void    ft_rra(t_stack **a);
 void    ft_rrb(t_stack **b);
 void    ft_rrr(t_stack **a, t_stack **b);
+
+
+/*************** Checks ***************/
+
+void check_dup(char **av);
+
+t_stack    *fill_list(int ac, char **input);
+
+void ft_exit_ps(char *arg, int err);
