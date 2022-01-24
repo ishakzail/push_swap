@@ -42,6 +42,13 @@ void printStack(t_stack **s)
     printf("\n");
 }
 
+void	ft_exit_ps(char *arg, int err)
+{
+	if (err != 0)
+		ft_putstr_fd(arg, 2);
+	exit(err);
+}
+
 int main(int ac, char **av)
 {
 
@@ -49,24 +56,15 @@ int main(int ac, char **av)
     int i;
     int var;
 
-    i = 1;
-    a = ft_stacknew(ft_atoi(av[1]));
-    //ft_pa(&b,&a);
-    if (ac > 1)
+    if (ac < 2)
     {
-        while (ac > ++i)
-        {
-            // printf("%d\n",ft_atoi(av[i]));
-            // if (!ft_isdigit(ft_atoi(av[i])))
-            // {
-            //     printf("Error\n");
-            //     exit(1);
-            // }
-                
-            push_front(&a,ft_atoi(av[i]));
-        }   
+        printf("Wrong number of arguments");
+        exit(1);
     }
-
+    a = fill_list(ac,av);
+    check_dup(av);
+    
+        
     // push_front(&a, 2);
     // push_front(&a, 3);
     // push_front(&a, 4);
@@ -84,10 +82,10 @@ int main(int ac, char **av)
     // ft_pa(&a,&b);
     // ft_pb(&a,&b);
     // ft_rotate(&a);
-    ft_ra(&a);
+    //ft_ra(&a);
     // ft_rr(&a,&b);
     // ft_rrr(&a,&b);
-    ft_rra(&a);
+    //ft_rra(&a);
     printStack(&a);
     //printStack(&b);
     return (0);
