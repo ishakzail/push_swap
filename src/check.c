@@ -15,17 +15,15 @@ void check_dup(char **av)
         {
             if (i == j)
                 j++;
-            if (strcmp(dup,av[j]) == 0)
+            else if (strcmp(dup,av[j]) == 0)
             {
                 free(dup);
-                printf("Values duplicated\n");
-                exit(1);
+                ft_exit_ps("Values duplicated !",1);
             }
-            j++;
+            else
+                j++;
         }
         free(dup);
         i++;
     }
-    //printf("Values are not duplicated\n");
-    //free(dup);
 }
