@@ -93,10 +93,7 @@ void    ft_sa(t_stack *a)
 {
 
     if (!a || a->link == NULL)
-    {
-        printf("t_stack a cannot be swipped !");
-        exit(1);
-    }
+        ft_exit_ps("Stack A cannot be swipped", 1);
     else
         ft_swap(a);
 }
@@ -105,10 +102,7 @@ void    ft_sb(t_stack *b)
 {
 
     if (!b || b->link == NULL)
-    {
-        printf("t_stack b cannot be swipped !");
-        exit(1);
-    }
+        ft_exit_ps("Stack B cannot be swipped", 1);
     else
         ft_swap(b);
 }
@@ -122,10 +116,7 @@ void    ft_ss(t_stack *a, t_stack *b)
 void    ft_pa(t_stack **a, t_stack **b)
 {
     if (!b)
-    {
-         printf("b is empty");
-        exit(1);
-    }
+        ft_exit_ps("Stack A is empty", 1);
     push_front(a,(*b)->data);
     pop_front(b);
 }
@@ -133,10 +124,7 @@ void    ft_pa(t_stack **a, t_stack **b)
 void    ft_pb(t_stack **a, t_stack **b)
 {
     if (!b)
-    {
-         printf("b is empty");
-        exit(1);
-    }
+        ft_exit_ps("Stack B is empty", 1);
     push_front(b,(*a)->data);
     pop_front(a);
 }
@@ -160,10 +148,7 @@ void    ft_rotate(t_stack **s)
 void    ft_ra(t_stack **a)
 {
     if (!a || !*a)
-    {
-        printf("t_stack is empty");
-        exit(1);
-    }
+        ft_exit_ps("Stack is empty", 1);
     else
         ft_rotate(a);
 }
@@ -171,10 +156,7 @@ void    ft_ra(t_stack **a)
 void    ft_rb(t_stack **b)
 {
     if (!b || !*b)
-    {
-        printf("t_stack is empty");
-        exit(1);
-    }
+        ft_exit_ps("Stack is empty", 1);
     else
         ft_rotate(b);
 }
@@ -197,10 +179,7 @@ void    reverse(t_stack **s)
 void    ft_rra(t_stack **a)
 {
     if (!a || !*a)
-    {
-        printf("t_stack is empty");
-        exit(1);
-    }
+        ft_exit_ps("Stack is empty", 1);
     else
         reverse(a);
 }
@@ -208,10 +187,7 @@ void    ft_rra(t_stack **a)
 void    ft_rrb(t_stack **b)
 {
     if (!b || !*b)
-    {
-        printf("t_stack is empty");
-        exit(1);
-    }
+        ft_exit_ps("Stack is empty", 1);
     else
         reverse(b);
 }
