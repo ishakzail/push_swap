@@ -55,3 +55,5 @@ void check_dup(char **av);
 t_stack    *fill_list(int ac, char **input);
 
 void ft_exit_ps(char *arg, int err);
+
+int split_args(char ***strs, char **av, char *sep);
