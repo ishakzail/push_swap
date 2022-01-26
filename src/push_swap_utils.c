@@ -12,6 +12,20 @@ t_stack    *ft_stacknew(int data)
     return (tmp);
 }
 
+int ft_stacksize(t_stack **s)
+{
+    int ret;
+
+    ret = 0;
+    while ((*s))
+    {
+        (*s) = (*s)->link;
+        ret++;
+    }
+    return(ret);
+
+}
+
 void printStack(t_stack **s)
 {
     if (s == NULL || !*s)
@@ -34,6 +48,49 @@ void	ft_exit_ps(char *arg, int err)
 	if (err != 0)
 		ft_putstr_fd(arg, 2);
 	exit(err);
+}
+
+long    ft_atol(char *str)
+{
+    long    nbr;
+    long    signe;
+
+    nbr = 0;
+    signe = 1;
+    while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\r'
+		|| *str == '\f' || *str == '\v')
+		str++;
+	if (*str == '+')
+		str++;
+	else if (*str == '-')
+	{
+		signe = -1;
+		str++;
+	}
+	while (*str && (*str >= '0' && *str <= '9'))
+	{
+		nbr = (nbr * 10) + (*str - '0');
+		str++;
+	}
+	return (nbr * signe);
+}
+
+int    check_if_int(char *str)
+{
+    int i;
+
+    i = 0;
+    if (str[i] == '+' || str[i] == '-')
+            i++;
+    while (str[i])
+    {
+        if (!ft_isdigit(str[i]))
+            return (0);
+        i++;
+    }
+    if (ft_atol(str) < INT_MIN || ft_atol(str) > INT_MAX)
+        return (0);
+    return (1);
 }
 
 void check_dup(char **av)
@@ -70,6 +127,7 @@ t_stack    *fill_list(int ac, char **input)
     t_stack *s;
     s = ft_stacknew(ft_atoi(input[0]));
     i = 1;
+    
     while (ac > i)
     {
         push_front(&s,ft_atoi(input[i]));
