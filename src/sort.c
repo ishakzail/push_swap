@@ -12,7 +12,33 @@
 
 #include "push_swap.h"
 
-t_stack *sort_small(t_stack **stack)
+void sort_stack(t_stack **s)
 {
-    
+    t_stack *node;
+    t_stack *tmp;
+    int     var;
+
+    tmp = NULL;
+    node = *s;
+    while (node != NULL)
+    {
+        tmp = node;
+        while (tmp->link != NULL)
+        {
+            if (tmp->data > tmp->link->data)
+            {
+                var = tmp->data;
+                tmp->data = tmp->link->data;
+                tmp->link->data = var;
+            }
+            tmp = tmp->link;
+        }
+        node = node->link;
+    } 
+
 }
+
+// t_stack *sort_small(t_stack **stack)
+// {
+    
+// }
