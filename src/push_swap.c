@@ -21,14 +21,15 @@ int main(int ac, char **av)
     int     i;
     int     var;
 
-    // printf("res == %d\n",check_if_int("4.5"));
     if (ac < 2)
         ft_exit_ps("Wrong number of arguments", 1);
     strs = 0;
     i = split_args(&strs,av + 1," ");
+    printf("number of args == %d\n",i);
     a = fill_list(i,strs);
     check_dup(strs);
+    sort_stack(&a);
+    // ft_sa(a);
     printStack(&a);
     return (0);
-
 }

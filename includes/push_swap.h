@@ -63,3 +63,5 @@ long    ft_atol(char *str);
 int    check_if_int(char *str);
 
 void printStack(t_stack **s);
+
+void sort_stack(t_stack **s);
