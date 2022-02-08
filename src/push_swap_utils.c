@@ -207,3 +207,14 @@ void sort_stack(t_stack **s)
         node = node->link;
     }
 }
+
+int     is_sorted(t_stack *s)
+{
+    while (s->link)
+    {
+        if (s->data > (s->link->data))
+            return (0);
+        s = s->link;
+    }
+    return (1);
+}

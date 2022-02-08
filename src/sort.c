@@ -38,6 +38,16 @@ void sort_stack(t_stack **s)
 
 }
 
+int     is_sorted(t_stack **s)
+{
+    while ((*s)->link != NULL)
+    {
+        if (ft_atoi((*s)->data) > ft_atoi((*s)->link->data))
+            return (0);
+        (*s) = (*s)->link;
+    }
+    return (1);
+}
 // t_stack *sort_small(t_stack **stack)
 // {
     

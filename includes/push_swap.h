@@ -65,3 +65,5 @@ int    check_if_int(char *str);
 void printStack(t_stack **s);
 
 void sort_stack(t_stack **s);
+
+int    is_sorted(t_stack *s);

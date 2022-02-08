@@ -28,8 +28,12 @@ int main(int ac, char **av)
     printf("number of args == %d\n",i);
     a = fill_list(i,strs);
     check_dup(strs);
-    sort_stack(&a);
-    // ft_sa(a);
     printStack(&a);
+    if (is_sorted(a) == 0)
+        printf("stack not sorted !\n");
+    else 
+       printf("stack a is sorted !\n");
+
+    
     return (0);
 }
