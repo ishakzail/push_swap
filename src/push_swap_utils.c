@@ -120,10 +120,10 @@ void check_dup(char **av)
         {
             if (i == j)
                 j++;
-            else if (strcmp(dup,av[j]) == 0)
+            else if (strcmp(dup,av[j]) == 0 || (ft_atoi(dup) == ft_atoi(av[j])))
             {
                 free(dup);
-                ft_exit_ps("Values duplicated !",1);
+                ft_exit_ps("Values duplicated !",2);
             }
             else
                 j++;
@@ -180,4 +180,30 @@ int split_args(char ***strs, char **av, char *sep)
     while ((*strs)[ret])
         ret++;
     return (ret);
+}
+
+void sort_stack(t_stack **s)
+{
+    t_stack *node;
+    t_stack *tmp;
+    int     var;
+
+    node = (t_stack *)malloc(sizeof(node));
+    tmp = NULL;
+    node = *s;
+    while (node != NULL)
+    {
+        tmp = node;
+        while (tmp->link != NULL)
+        {
+            if (tmp->data > tmp->link->data)
+            {
+                var = tmp->data;
+                tmp->data = tmp->link->data;
+                tmp->link->data = var;
+            }
+            tmp = tmp->link;
+        }
+        node = node->link;
+    }
 }
