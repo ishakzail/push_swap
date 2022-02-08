@@ -125,13 +125,18 @@ t_stack    *fill_list(int ac, char **input)
 {
     int i;
     t_stack *s;
-    s = ft_stacknew(ft_atoi(input[0]));
-    i = 1;
     
-    while (ac > i)
-    {
-        push_front(&s,ft_atoi(input[i]));
-        i++;
+    i = ac - 1;
+    
+    while (i >= 0)
+    {   
+        if (!check_if_int(input[i]))
+            ft_exit_ps("Error\n",2);
+        if (i == (ac - 1))
+            s = ft_stacknew(ft_atoi(input[i]));
+        else
+            push_front(&s,ft_atoi(input[i]));
+        i--;
     }
     return (s);
 }
