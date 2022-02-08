@@ -38,7 +38,7 @@ void    push_front(t_stack **s, int data)
     top->link = NULL;
     top->link = *s;
     *s = top;
-    //free(top);
+    // free(top);
 }
 
 void    push_back(t_stack **s, int data)
