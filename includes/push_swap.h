@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #include "libft/libft.h"
 
@@ -57,3 +58,8 @@ t_stack    *fill_list(int ac, char **input);
 void ft_exit_ps(char *arg, int err);
 
 int split_args(char ***strs, char **av, char *sep);
+
+long    ft_atol(char *str);
+int    check_if_int(char *str);
+
+void printStack(t_stack **s);
