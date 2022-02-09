@@ -24,20 +24,6 @@ t_stack    *ft_stacknew(int data)
     return (tmp);
 }
 
-int ft_stacksize(t_stack **s)
-{
-    int ret;
-
-    ret = 0;
-    while ((*s))
-    {
-        (*s) = (*s)->link;
-        ret++;
-    }
-    return(ret);
-
-}
-
 void printStack(t_stack **s)
 {
     if (s == NULL || !*s)
@@ -208,13 +194,13 @@ void sort_stack(t_stack **s)
     }
 }
 
-int     is_sorted(t_stack *s)
-{
-    while (s->link)
-    {
-        if (s->data > (s->link->data))
-            return (0);
-        s = s->link;
-    }
-    return (1);
-}
+// int     is_sorted(t_stack *s)
+// {
+//     while (s->link)
+//     {
+//         if (s->data > (s->link->data))
+//             return (0);
+//         s = s->link;
+//     }
+//     return (1);
+// }
