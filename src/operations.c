@@ -80,6 +80,19 @@ void    pop_front(t_stack **s)
     free(tmp);
 }
 
+int ft_stacksize(t_stack **s)
+{
+    int ret;
+
+    ret = 0;
+    while ((*s))
+    {
+        (*s) = (*s)->link;
+        ret++;
+    }
+    return(ret);
+}
+
 void    ft_swap(t_stack *s)
 {
     int tmpvar;
@@ -89,44 +102,27 @@ void    ft_swap(t_stack *s)
     s->link->data = tmpvar;
 }
 
-void    ft_sa(t_stack *a)
+void    ft_sx(t_stack **stack_1, t_stack **stack_2)
 {
-
-    if (!a || a->link == NULL)
-        ft_exit_ps("Stack A cannot be swipped", 1);
+    (void)stack_2;
+    if (!stack_1 || !*stack_1)
+        ft_exit_ps("Stack cannot be swipped", 2);
     else
-        ft_swap(a);
+        ft_swap(*stack_1);
 }
 
-void    ft_sb(t_stack *b)
-{
+// void    ft_ss(t_stack *a, t_stack *b)
+// {
+//     ft_sx(b,a);
+//     ft_sx(a,b);
+// }
 
-    if (!b || b->link == NULL)
-        ft_exit_ps("Stack B cannot be swipped", 1);
-    else
-        ft_swap(b);
-}
-
-void    ft_ss(t_stack *a, t_stack *b)
+void    ft_px(t_stack **stack_1, t_stack **stack_2)
 {
-    ft_sb(b);
-    ft_sa(a);
-}
-
-void    ft_pa(t_stack **a, t_stack **b)
-{
-    if (!b)
-        ft_exit_ps("Stack A is empty", 1);
-    push_front(a,(*b)->data);
-    pop_front(b);
-}
-
-void    ft_pb(t_stack **a, t_stack **b)
-{
-    if (!b)
-        ft_exit_ps("Stack B is empty", 1);
-    push_front(b,(*a)->data);
-    pop_front(a);
+    if (!stack_1)
+        ft_exit_ps("Stack 1 is empty", 2);
+    push_front(stack_2,(*stack_1)->data);
+    pop_front(stack_1);
 }
 
 void    ft_rotate(t_stack **s)
@@ -145,26 +141,19 @@ void    ft_rotate(t_stack **s)
     last->link = first;
 }
 
-void    ft_ra(t_stack **a)
+void    ft_rx(t_stack **stack_1, t_stack **stack_2)
 {
-    if (!a || !*a)
-        ft_exit_ps("Stack is empty", 1);
+    (void)stack_2;
+    if (!stack_1 || !*stack_1)
+        ft_exit_ps("Stack is empty", 2);
     else
-        ft_rotate(a);
+        ft_rotate(stack_1);
 }
 
-void    ft_rb(t_stack **b)
+void    ft_rr(t_stack **stack_1, t_stack **stack_2)
 {
-    if (!b || !*b)
-        ft_exit_ps("Stack is empty", 1);
-    else
-        ft_rotate(b);
-}
-
-void    ft_rr(t_stack **a, t_stack **b)
-{
-    ft_ra(a);
-    ft_rb(b);
+    ft_rx(stack_1,stack_2);
+    ft_rx(stack_2,stack_1);
 }
 
 void    reverse(t_stack **s)
@@ -176,24 +165,104 @@ void    reverse(t_stack **s)
     pop_back(s);
 }
 
-void    ft_rra(t_stack **a)
+void    ft_rrx(t_stack **stack_1, t_stack **stack_2)
 {
-    if (!a || !*a)
-        ft_exit_ps("Stack is empty", 1);
+    (void)stack_2;
+    if (!stack_1 || !*stack_1)
+        ft_exit_ps("Stack is empty", 2);
     else
-        reverse(a);
+        reverse(stack_1);
 }
 
-void    ft_rrb(t_stack **b)
+void ft_rrr(t_stack **stack_1, t_stack **stack_2)
 {
-    if (!b || !*b)
-        ft_exit_ps("Stack is empty", 1);
-    else
-        reverse(b);
+    ft_rrx(stack_1,stack_2);
+    ft_rrx(stack_2,stack_1);
 }
 
-void ft_rrr(t_stack **a, t_stack **b)
+
+// void	sx(t_stack **stack_1, t_stack **stack_2)
+// {
+// 	t_stack	*tmp;
+
+// 	(void)stack_2;
+// 	if (ft_stacksize(stack_1) >= 2)
+// 	{
+// 		tmp = (*stack_1)->link;
+// 		(*stack_1)->link = tmp->link;
+// 		push_front(stack_1, tmp->data);
+// 	}
+// }
+
+// void	px(t_stack **stack_1, t_stack **stack_2)
+// {
+// 	t_stack	*tmp;
+
+// 	if (ft_stacksize(stack_1))
+// 	{
+// 		tmp = *stack_1;
+// 		*stack_1 = (*stack_1)->link;
+// 		push_front(stack_2, tmp->data);
+// 	}
+// }
+
+// void	rx(t_stack **stack_1, t_stack **stack_2)
+// {
+// 	t_stack	*tmp;
+
+// 	(void)stack_2;
+// 	if (ft_stacksize(stack_1) >= 2)
+// 	{
+// 		tmp = *stack_1;
+// 		*stack_1 = (*stack_1)->link;
+// 		tmp->link = 0;
+// 		push_front(stack_1, tmp->data);
+// 	}
+// }
+
+// void	rrx(t_stack **stack_1, t_stack **stack_2)
+// {
+// 	t_stack	*last;
+// 	t_stack	*tmp;
+
+// 	(void)stack_2;
+// 	if (ft_stacksize(stack_1) >= 2)
+// 	{
+// 		last = *stack_1;
+// 		while (last->link)
+// 		{
+// 			tmp = last;
+// 			last = last->link;
+// 		}
+// 		tmp->link = 0;
+// 		last->link = *stack_1;
+// 		*stack_1 = last;
+// 	}
+// }
+
+void	run(char *cmd, t_stack **stack_1, t_stack **stack_2, int x)
 {
-    ft_rra(a);
-    ft_rrb(b);
+	int			tmp;
+	void		(*f)(t_stack **, t_stack **);
+	const int	len = ft_strlen(cmd);
+
+	tmp = abs(x);
+	if (!ft_strncmp(cmd, "sa", len) || !ft_strncmp(cmd, "sb", len)
+		|| !ft_strncmp(cmd, "ss", len))
+		f = &ft_sx;
+	else if (!ft_strncmp(cmd, "pa", len) || !ft_strncmp(cmd, "pb", len))
+		f = &ft_px;
+	else if (!ft_strncmp(cmd, "ra", len) || !ft_strncmp(cmd, "rb", len)
+		|| !ft_strncmp(cmd, "rr", len))
+		f = &ft_rx;
+	else
+		f = &ft_rrx;
+	while (tmp--)
+	{
+		f(stack_1, stack_2);
+		if (stack_2 && f != ft_px)
+			f(stack_2, 0);
+		if (x > 0)
+			ft_putendl_fd(cmd, 1);
+	}
 }
