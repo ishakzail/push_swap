@@ -6,7 +6,7 @@
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:11:18 by izail             #+#    #+#             */
-/*   Updated: 2022/02/08 11:11:22 by izail            ###   ########.fr       */
+/*   Updated: 2022/02/12 12:38:00 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sort_big(t_stack **stack_a)
 	stack_b = 0;
 	while (ft_stacksize(*stack_a) > 3)
 		run("pb", stack_a, &stack_b, 1);
-	if (!is_sorted(*stack_a))
+	if (!is_sorted(stack_a))
 		sort_3(stack_a);
 	while (ft_stacksize(stack_b))
 	{

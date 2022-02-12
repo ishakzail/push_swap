@@ -33,7 +33,7 @@ void    reverse(t_stack **s);
 void    pop_back(t_stack **s);
 void    pop_front(t_stack **s);
 void    push_back(t_stack **s, int data);
- void    push_front(t_stack **s, int data);
+void    push_front(t_stack **s, int data);
 
 void    ft_swap(t_stack *s);
 // void    ft_sx(t_stack *s);
@@ -51,28 +51,37 @@ void    ft_rrx(t_stack **stack_1, t_stack **stack_2);
 
 /*************** Checks ***************/
 
-void check_dup(char **av);
+void        check_dup(char **av);
 
 t_stack    *fill_list(int ac, char **input);
 
-void ft_exit_ps(char *arg, int err);
+void        ft_exit_ps(char *arg, int err);
 
-int split_args(char ***strs, char **av, char *sep);
+int         split_args(char ***strs, char **av, char *sep);
 
-long    ft_atol(char *str);
-int    check_if_int(char *str);
+int         ft_abs(int  n);
+long        ft_atol(char *str);
+int         check_if_int(char *str);
 
-void printStack(t_stack **s);
+void        printStack(t_stack **s);
 
-void sort_stack(t_stack **s);
+void        sort_stack(t_stack **s);
 
-int    is_sorted(t_stack **s);
+int         is_sorted(t_stack **s);
 
-void	sort_3(t_stack **stack);
-void	run(char *cmd, t_stack **stack_1, t_stack **stack_2, int x);
+int	        stack_idx_mid(t_stack *stack, int num);
 
-int ft_stacksize(t_stack **stack);
+void	    sort_3(t_stack **stack);
+void	    sort_big(t_stack **stack_a);
+void	    run(char *cmd, t_stack **stack_1, t_stack **stack_2, int x);
 
-int	stack_min(t_stack *stack);
-int	stack_max(t_stack *stack);
-int	min(int a, int b);
+int         ft_stacksize(t_stack *stack);
+
+int	        stack_min(t_stack *stack);
+int	        stack_max(t_stack *stack);
+int	        min(int a, int b);
+
+
+void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b);
+void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b);
+void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b);

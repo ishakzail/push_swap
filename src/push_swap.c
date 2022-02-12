@@ -16,10 +16,9 @@
 int main(int ac, char **av)
 {
 
-    t_stack *a , *b;
+    t_stack *a ;
     char    **strs;
     int     i;
-    int     var;
 
     if (ac < 2)
         ft_exit_ps("Wrong number of arguments", 1);
@@ -27,9 +26,11 @@ int main(int ac, char **av)
     i = split_args(&strs,av + 1," ");
     a = fill_list(i,strs);
     check_dup(strs);
-    sort_3(&a);
+    // sort_3(&a);
 
-    printf("size is == %d",ft_stacksize(&a));
+    printf("idx == %d\n",stack_idx_mid(a, 7));
+
+
     // sort_stack(&a);
     //ft_sx(a);
     // printStack(&a);
@@ -42,7 +43,7 @@ int main(int ac, char **av)
     // is_sorted(&a) ? printf("==== YES ====\n") : printf(" ==== NO ====\n");
     // printf("arg1 == %d\n",ft_atoi(strs[0]));
     // ft_rrx(&a,&b);
-    // printStack(&a);
+    printStack(&a);
     // printStack(&b);
 
     return (0);

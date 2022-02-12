@@ -40,14 +40,14 @@ void printStack(t_stack **s)
     printf("\n");
 }
 
-int ft_stacksize(t_stack **s)
+int ft_stacksize(t_stack *s)
 {
     int ret;
 
     ret = 0;
-    while ((*s))
+    while (s)
     {
-        (*s) = (*s)->link;
+        s = s->link;
         ret++;
     }
     return(ret);
@@ -58,6 +58,17 @@ void	ft_exit_ps(char *arg, int err)
 	if (err != 0)
 		ft_putstr_fd(arg, 2);
 	exit(err);
+}
+
+int ft_abs(int  n)
+{
+    int abs;
+
+    if (n < 0)
+        abs = -1 * n;
+    else
+        abs = n;
+    return (abs);
 }
 
 long    ft_atol(char *str)
@@ -180,26 +191,26 @@ int split_args(char ***strs, char **av, char *sep)
     return (ret);
 }
 
-int	is_valid(char **strs)
-{
-	int	i;
-	int	tmp;
-	int	ret;
-	int	*nums;
+// int	is_valid(char **strs)
+// {
+// 	int	i;
+// 	int	tmp;
+// 	int	ret;
+// 	int	*nums;
 
-	i = 0;
-	ret = 0;
-	while (strs[i])
-		if (!is_int(strs[i++]))
-			return (ret);
-	nums = malloc(sizeof(int) * i);
-	if (!nums)
-		return (ret);
-	tmp = i;
-	while (i--)
-		nums[i] = ft_atoi(strs[i]);
-	if (!has_duplicate(nums, tmp))
-		ret = 1;
-	free(nums);
-	return (ret);
-}
+// 	i = 0;
+// 	ret = 0;
+// 	while (strs[i])
+// 		if (!is_int(strs[i++]))
+// 			return (ret);
+// 	nums = malloc(sizeof(int) * i);
+// 	if (!nums)
+// 		return (ret);
+// 	tmp = i;
+// 	while (i--)
+// 		nums[i] = ft_atoi(strs[i]);
+// 	if (!has_duplicate(nums, tmp))
+// 		ret = 1;
+// 	free(nums);
+// 	return (ret);
+// }
