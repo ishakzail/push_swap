@@ -40,6 +40,18 @@ void printStack(t_stack **s)
     printf("\n");
 }
 
+int ft_stacksize(t_stack **s)
+{
+    int ret;
+
+    ret = 0;
+    while ((*s))
+    {
+        (*s) = (*s)->link;
+        ret++;
+    }
+    return(ret);
+}
 
 void	ft_exit_ps(char *arg, int err)
 {
@@ -168,39 +180,26 @@ int split_args(char ***strs, char **av, char *sep)
     return (ret);
 }
 
-void sort_stack(t_stack **s)
+int	is_valid(char **strs)
 {
-    t_stack *node;
-    t_stack *tmp;
-    int     var;
+	int	i;
+	int	tmp;
+	int	ret;
+	int	*nums;
 
-    node = (t_stack *)malloc(sizeof(node));
-    tmp = NULL;
-    node = *s;
-    while (node != NULL)
-    {
-        tmp = node;
-        while (tmp->link != NULL)
-        {
-            if (tmp->data > tmp->link->data)
-            {
-                var = tmp->data;
-                tmp->data = tmp->link->data;
-                tmp->link->data = var;
-            }
-            tmp = tmp->link;
-        }
-        node = node->link;
-    }
+	i = 0;
+	ret = 0;
+	while (strs[i])
+		if (!is_int(strs[i++]))
+			return (ret);
+	nums = malloc(sizeof(int) * i);
+	if (!nums)
+		return (ret);
+	tmp = i;
+	while (i--)
+		nums[i] = ft_atoi(strs[i]);
+	if (!has_duplicate(nums, tmp))
+		ret = 1;
+	free(nums);
+	return (ret);
 }
-
-// int     is_sorted(t_stack *s)
-// {
-//     while (s->link)
-//     {
-//         if (s->data > (s->link->data))
-//             return (0);
-//         s = s->link;
-//     }
-//     return (1);
-// }

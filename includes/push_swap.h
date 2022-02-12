@@ -70,3 +70,9 @@ int    is_sorted(t_stack **s);
 
 void	sort_3(t_stack **stack);
 void	run(char *cmd, t_stack **stack_1, t_stack **stack_2, int x);
+
+int ft_stacksize(t_stack **stack);
+
+int	stack_min(t_stack *stack);
+int	stack_max(t_stack *stack);
+int	min(int a, int b);

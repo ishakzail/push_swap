@@ -12,45 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-int	stack_min(t_stack *stack)
-{
-	int		min;
-	int		num;
-
-	min = stack->data;
-	while (stack)
-	{
-		num = stack->data;
-		if (min > num)
-			min = num;
-		stack = stack->link;
-	}
-	return (min);
-}
-
-int	stack_max(t_stack *stack)
-{
-	int		max;
-	int		num;
-
-	max = stack->data;
-	while (stack)
-	{
-		num = stack->data;
-		if (max < num)
-			max = num;
-		stack = stack->link;
-	}
-	return (max);
-}
-
-int	min(int a, int b)
-{
-	if (a <= b)
-		return (a);
-	return (b);
-}
-
 void	sort_3(t_stack **stack)
 {
 
@@ -78,31 +39,31 @@ void	sort_3(t_stack **stack)
 	}
 }
 
-// static void	sort_big(t_stack **stack_a)
-// {
-// 	int		a;
-// 	int		b;
-// 	t_stack	*stack_b;
+void	sort_big(t_stack **stack_a)
+{
+	int		a;
+	int		b;
+	t_stack	*stack_b;
 
-// 	stack_b = 0;
-// 	while (ft_lstsize(*stack_a) > 3)
-// 		run("pb", stack_a, &stack_b, 1);
-// 	if (!is_sorted(*stack_a))
-// 		sort_3(stack_a);
-// 	while (ft_lstsize(stack_b))
-// 	{
-// 		a = 0;
-// 		b = 0;
-// 		get_min_rotate(*stack_a, stack_b, &a, &b);
-// 		if ((a >= 0 && b >= 0) || (a < 0 && b < 0))
-// 			rotate_same(stack_a, &stack_b, a, b);
-// 		else
-// 			rotate_diff(stack_a, &stack_b, a, b);
-// 		run("pa", &stack_b, stack_a, 1);
-// 	}
-// }
+	stack_b = 0;
+	while (ft_stacksize(*stack_a) > 3)
+		run("pb", stack_a, &stack_b, 1);
+	if (!is_sorted(*stack_a))
+		sort_3(stack_a);
+	while (ft_stacksize(stack_b))
+	{
+		a = 0;
+		b = 0;
+		get_min_rotate(*stack_a, stack_b, &a, &b);
+		if ((a >= 0 && b >= 0) || (a < 0 && b < 0))
+			rotate_same(stack_a, &stack_b, a, b);
+		else
+			rotate_diff(stack_a, &stack_b, a, b);
+		run("pa", &stack_b, stack_a, 1);
+	}
+}
 
-// static void	sort_final(t_stack **stack)
+// void	sort_final(t_stack **stack)
 // {
 // 	const int	i = stack_idx_minmax(*stack, stack_min(*stack));
 
@@ -123,31 +84,6 @@ void	sort_3(t_stack **stack)
 // 	sort_final(stack);
 // }
 
-// void sort_stack(t_stack **s)
-// {
-//     t_stack *node;
-//     t_stack *tmp;
-//     int     var;
-
-//     tmp = NULL;
-//     node = *s;
-//     while (node != NULL)
-//     {
-//         tmp = node;
-//         while (tmp != NULL)
-//         {
-//             if ((tmp->data) > (tmp->link->data))
-//             {
-//                 var = (tmp->data);
-//                 tmp->data = (tmp->link->data);
-//                 tmp->link->data = var;
-//             }
-//             tmp = tmp->link;
-//         }
-//         node = node->link;
-//     } 
-
-// }
 
 int     is_sorted(t_stack **s)
 {
@@ -159,8 +95,3 @@ int     is_sorted(t_stack **s)
     }
     return (1);
 }
-
-// t_stack *sort_small(t_stack **stack)
-// {
-    
-// }

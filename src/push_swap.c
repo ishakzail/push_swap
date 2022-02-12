@@ -27,13 +27,9 @@ int main(int ac, char **av)
     i = split_args(&strs,av + 1," ");
     a = fill_list(i,strs);
     check_dup(strs);
-    // if (is_sorted(&a))
-    //     ft_exit_ps("Sorted successfully !",2);
-    // else
-    // sort_3(&a);
-    // else    
-    //     ft_exit_ps("Currenlty we are working only on 3 args",2);
-    
+    sort_3(&a);
+
+    printf("size is == %d",ft_stacksize(&a));
     // sort_stack(&a);
     //ft_sx(a);
     // printStack(&a);
@@ -44,9 +40,9 @@ int main(int ac, char **av)
     // else 
     //      printf("stack a is sorted !\n");
     // is_sorted(&a) ? printf("==== YES ====\n") : printf(" ==== NO ====\n");
-    printf("arg1 == %d\n",ft_atoi(strs[0]));
-    ft_rrx(&a,&b);
-    printStack(&a);
+    // printf("arg1 == %d\n",ft_atoi(strs[0]));
+    // ft_rrx(&a,&b);
+    // printStack(&a);
     // printStack(&b);
 
     return (0);

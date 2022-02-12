@@ -80,19 +80,6 @@ void    pop_front(t_stack **s)
     free(tmp);
 }
 
-int ft_stacksize(t_stack **s)
-{
-    int ret;
-
-    ret = 0;
-    while ((*s))
-    {
-        (*s) = (*s)->link;
-        ret++;
-    }
-    return(ret);
-}
-
 void    ft_swap(t_stack *s)
 {
     int tmpvar;
