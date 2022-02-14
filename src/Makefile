@@ -25,7 +25,7 @@ OBJS = $(MANDATORY:.c=.o)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 push_swap : $(OBJS)  libft
-			gcc -o push_swap $(OBJS) -L$(LIBFT) -lft
+			gcc -o $@ $(OBJS) -L$(LIBFT) -lft
 
 all: push_swap
 

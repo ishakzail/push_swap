@@ -15,7 +15,7 @@
 int	stack_idx_mid(t_stack *stack, int num)
 {
 	int			current;
-	int			link;
+	int			next;
 	int			ret;
 	const int	size = ft_stacksize(stack);
 
@@ -23,8 +23,8 @@ int	stack_idx_mid(t_stack *stack, int num)
 	while (stack->link)
 	{
 		current = stack->data;
-		link = stack->link->data;
-		if (num > current && num < link)
+		next = stack->link->data;
+		if (num > current && num < next)
 			break ;
 		++ret;
 		stack = stack->link;

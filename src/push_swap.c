@@ -27,9 +27,8 @@ int main(int ac, char **av)
     a = fill_list(i,strs);
     check_dup(strs);
     // sort_3(&a);
-
-    printf("idx == %d\n",stack_idx_mid(a, 7));
-
+    sort(&a);
+    
 
     // sort_stack(&a);
     //ft_sx(a);
@@ -43,7 +42,7 @@ int main(int ac, char **av)
     // is_sorted(&a) ? printf("==== YES ====\n") : printf(" ==== NO ====\n");
     // printf("arg1 == %d\n",ft_atoi(strs[0]));
     // ft_rrx(&a,&b);
-    printStack(&a);
+    // printStack(&a);
     // printStack(&b);
 
     return (0);

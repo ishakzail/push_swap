@@ -19,8 +19,8 @@ void	sort_3(t_stack **stack)
 	const int	num_2 = (*stack)->link->data;
 	const int	num_3 = (*stack)->link->link->data;
 
-    if(is_sorted(stack))
-        ft_exit_ps("stack already sorted",2);
+    // if(is_sorted(stack))
+    //     ft_exit_ps("stack already sorted",2);
 	if (num_1 == stack_min(*stack) && num_2 == stack_max(*stack))
 	{
 		run("sa", stack, 0, 1);
@@ -63,27 +63,26 @@ void	sort_big(t_stack **stack_a)
 	}
 }
 
-// void	sort_final(t_stack **stack)
-// {
-// 	const int	i = stack_idx_minmax(*stack, stack_min(*stack));
+void	sort_final(t_stack **stack)
+{
+	const int	i = stack_idx_minmax(*stack, stack_min(*stack));
 
-// 	if (i < 0)
-// 		run("rra", stack, 0, -i);
-// 	else
-// 		run("ra", stack, 0, i);
-// }
+	if (i < 0)
+		run("rra", stack, 0, -i);
+	else
+		run("ra", stack, 0, i);
+}
 
-// void	sort(t_stack **stack)
-// {
-// 	if (ft_lstsize(*stack) == 2)
-// 		run("sa", stack, 0, 1);
-// 	else if (ft_lstsize(*stack) == 3)
-// 		sort_3(stack);
-// 	else
-// 		sort_big(stack);
-// 	sort_final(stack);
-// }
-
+void	sort(t_stack **stack)
+{
+	if (ft_stacksize(*stack) == 2)
+		run("sa", stack, 0, 1);
+	else if (ft_stacksize(*stack) == 3)
+		sort_3(stack);
+	else
+		sort_big(stack);
+	sort_final(stack);
+}
 
 int     is_sorted(t_stack **s)
 {

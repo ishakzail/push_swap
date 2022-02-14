@@ -70,6 +70,7 @@ void        sort_stack(t_stack **s);
 int         is_sorted(t_stack **s);
 
 int	        stack_idx_mid(t_stack *stack, int num);
+int	        stack_idx_minmax(t_stack *stack, int num);
 
 void	    sort_3(t_stack **stack);
 void	    sort_big(t_stack **stack_a);
@@ -85,3 +86,6 @@ int	        min(int a, int b);
 void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b);
 void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b);
 void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b);
+
+void	sort_final(t_stack **stack);
+void	sort(t_stack **stack);
