@@ -167,73 +167,13 @@ void ft_rrr(t_stack **stack_1, t_stack **stack_2)
     ft_rrx(stack_2,stack_1);
 }
 
-
-// void	sx(t_stack **stack_1, t_stack **stack_2)
-// {
-// 	t_stack	*tmp;
-
-// 	(void)stack_2;
-// 	if (ft_stacksize(stack_1) >= 2)
-// 	{
-// 		tmp = (*stack_1)->link;
-// 		(*stack_1)->link = tmp->link;
-// 		push_front(stack_1, tmp->data);
-// 	}
-// }
-
-// void	px(t_stack **stack_1, t_stack **stack_2)
-// {
-// 	t_stack	*tmp;
-
-// 	if (ft_stacksize(stack_1))
-// 	{
-// 		tmp = *stack_1;
-// 		*stack_1 = (*stack_1)->link;
-// 		push_front(stack_2, tmp->data);
-// 	}
-// }
-
-// void	rx(t_stack **stack_1, t_stack **stack_2)
-// {
-// 	t_stack	*tmp;
-
-// 	(void)stack_2;
-// 	if (ft_stacksize(stack_1) >= 2)
-// 	{
-// 		tmp = *stack_1;
-// 		*stack_1 = (*stack_1)->link;
-// 		tmp->link = 0;
-// 		push_front(stack_1, tmp->data);
-// 	}
-// }
-
-// void	rrx(t_stack **stack_1, t_stack **stack_2)
-// {
-// 	t_stack	*last;
-// 	t_stack	*tmp;
-
-// 	(void)stack_2;
-// 	if (ft_stacksize(stack_1) >= 2)
-// 	{
-// 		last = *stack_1;
-// 		while (last->link)
-// 		{
-// 			tmp = last;
-// 			last = last->link;
-// 		}
-// 		tmp->link = 0;
-// 		last->link = *stack_1;
-// 		*stack_1 = last;
-// 	}
-// }
-
 void	run(char *cmd, t_stack **stack_1, t_stack **stack_2, int x)
 {
 	int			tmp;
 	void		(*f)(t_stack **, t_stack **);
 	const int	len = ft_strlen(cmd);
 
-	tmp = abs(x);
+	tmp = ft_abs(x);
 	if (!ft_strncmp(cmd, "sa", len) || !ft_strncmp(cmd, "sb", len)
 		|| !ft_strncmp(cmd, "ss", len))
 		f = &ft_sx;
