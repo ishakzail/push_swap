@@ -50,3 +50,59 @@ int	min(int a, int b)
 		return (a);
 	return (b);
 }
+
+int		ft_find_smallest_index(t_stack *stack_a)
+{
+	int	idx;
+	int min_nbr;
+
+	idx = 0;
+	min_nbr = stack_min(stack_a);
+	while (stack_a)
+	{
+		if (stack_a->data == min_nbr)
+			return (idx);
+		else 
+			idx++;
+		stack_a = stack_a->link;
+	}
+	return (idx);
+}
+
+// int	*ft_stack_get_frame_content_by_index(t_stack *stack, int index)
+// {
+// 	t_stack	*iter;
+// 	int				i;
+
+// 	if (index < 0 || stack == NULL || ft_stacksize(stack) == 0)
+// 		return (NULL);
+// 	iter = stack->link;
+// 	i = 0;
+// 	while (i < index && iter != NULL)
+// 	{
+// 		iter = iter->link;
+// 		++i;
+// 	}
+// 	if (iter == NULL)
+// 		return (NULL);
+// 	return (&iter->data);
+// }
+
+void	ft_place_smallest_first(t_stack **stack_a, t_stack **stack_b)
+{
+	int		small_index;
+	
+	stack_b = 0;
+	small_index = ft_find_smallest_index(*stack_a);
+	if (small_index == 0)
+		return ;
+	while (small_index)
+	{
+		if (small_index <=  ft_stacksize(*stack_a)/ 2)
+			ft_run(&ft_ra, stack_a, stack_b);
+		else
+			ft_run(&ft_rra, stack_a, stack_b);
+		small_index--;
+	}
+	
+}
