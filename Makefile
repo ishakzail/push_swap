@@ -17,7 +17,7 @@ AR = ar -rcs
 RM = rm -f
 LIBFT = ./includes/libft
 
-MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c ./src/sort_big_utils.c ./src/sort_utils.c ./src/sort.c ./src/operations.c\
+MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/operations.c\
 
 OBJS = $(MANDATORY:.c=.o)
 
@@ -25,16 +25,16 @@ OBJS = $(MANDATORY:.c=.o)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 push_swap : $(OBJS)  libft
-			gcc -o $@ $(OBJS) -L$(LIBFT) -lft
+			gcc -o $@ -L$(LIBFT) $(OBJS) -lft
 
 all: push_swap
 
 libft:
-	make -C $(LIBFT) bonus
+	make -C $(LIBFT)
 
 clean: 
 	$(RM) $(OBJS)
-	make -C $(LIBFT) clean
+	make -C  $(LIBFT) fclean
 
 fclean: clean 
 	 $(RM) push_swap
