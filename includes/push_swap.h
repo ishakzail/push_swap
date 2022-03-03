@@ -17,6 +17,8 @@
 
 #include "libft/libft.h"
 
+typedef void	(*t_op_name)();
+
 typedef struct stack
 {
     int     data;
@@ -35,19 +37,33 @@ void    pop_front(t_stack **s);
 void    push_back(t_stack **s, int data);
 void    push_front(t_stack **s, int data);
 
-void    ft_swap(t_stack *s);
-// void    ft_sx(t_stack *s);
-void    ft_sx(t_stack **stack_1, t_stack **stack_2);
-// void    ft_ss(t_stack *a, t_stack *b);
-void    ft_px(t_stack **stack_1, t_stack **stack_2);
-// void    ft_rotate(t_stack **s);
-// void    ft_rx(t_stack **stack_1);
-void    ft_rx(t_stack **stack_1, t_stack **stack_2);
-// void    ft_rr(t_stack **stack_1, t_stack **stack_2);
-// void    reverse(t_stack **s);
-// void    ft_rrx(t_stack **stack_1);
-void    ft_rrx(t_stack **stack_1, t_stack **stack_2);
-// void    ft_rrr(t_stack **stack_1, t_stack **stack_2);
+void    ft_swap(t_stack **s);
+void    ft_sa(t_stack **a);
+void    ft_sb(t_stack **b);
+void    ft_ss(t_stack **a, t_stack **b);
+void    ft_pa(t_stack **a, t_stack **b);
+void    ft_pb(t_stack **a, t_stack **b);
+void    ft_rotate(t_stack **s);
+void    ft_ra(t_stack **a);
+void    ft_rb(t_stack **b);
+void    ft_rr(t_stack **a, t_stack **b);
+void    ft_rra(t_stack **a);
+void    ft_rrb(t_stack **b);
+void    ft_rrr(t_stack **a, t_stack **b);
+
+// void    ft_swap(t_stack *s);
+// // void    ft_sx(t_stack *s);
+// void    ft_sx(t_stack **stack_1, t_stack **stack_2);
+// // void    ft_ss(t_stack *a, t_stack *b);
+// void    ft_px(t_stack **stack_1, t_stack **stack_2);
+// // void    ft_rotate(t_stack **s);
+// // void    ft_rx(t_stack **stack_1);
+// void    ft_rx(t_stack **stack_1, t_stack **stack_2);
+// // void    ft_rr(t_stack **stack_1, t_stack **stack_2);
+// // void    reverse(t_stack **s);
+// // void    ft_rrx(t_stack **stack_1);
+// void    ft_rrx(t_stack **stack_1, t_stack **stack_2);
+// // void    ft_rrr(t_stack **stack_1, t_stack **stack_2);
 
 /*************** Checks ***************/
 
@@ -72,9 +88,10 @@ int         is_sorted(t_stack **s);
 int	        stack_idx_mid(t_stack *stack, int num);
 int	        stack_idx_minmax(t_stack *stack, int num);
 
-void	    sort_3(t_stack **stack);
+// void	    sort_3(t_stack **stack);
+void	    sort_3(t_stack **stack, t_stack **stack_b);
 void	    sort_big(t_stack **stack_a);
-void	    run(char *cmd, t_stack **stack_1, t_stack **stack_2, int x);
+
 
 int         ft_stacksize(t_stack *stack);
 
@@ -83,9 +100,16 @@ int	        stack_max(t_stack *stack);
 int	        min(int a, int b);
 
 
-void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b);
-void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b);
-void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b);
+// void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b);
+// void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b);
+// void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b);
 
-void	sort_final(t_stack **stack);
-void	sort(t_stack **stack);
+// void	sort_final(t_stack **stack);
+// void	sort(t_stack **stack);
+
+void	sort_5(t_stack **stack_a, t_stack **stack_b);
+int		ft_find_smallest_index(t_stack *stack_a);
+void    ft_place_smallest_first(t_stack **stack_a, t_stack **stack_b);
+int	    *ft_stack_get_frame_content_by_index(t_stack *stack, int index);
+void    ft_run(t_op_name operation, t_stack **stack_a, t_stack **stack_b);
+void    ft_print_op_name(t_op_name operation);
