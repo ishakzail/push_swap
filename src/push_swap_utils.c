@@ -109,7 +109,7 @@ int    check_if_int(char *str)
             return (0);
         i++;
     }
-    if (ft_atol(str) < INT_MIN || ft_atol(str) > INT_MAX)
+    if (( ft_atol(str) < INT_MIN ) || ( ft_atol(str) > INT_MAX ))
         return (0);
     return (1);
 }
