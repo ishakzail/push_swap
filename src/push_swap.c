@@ -17,6 +17,9 @@ int main(int ac, char **av)
 {
 
     t_stack *a ;
+    t_stack *b;
+
+    b = 0;
     char    **strs;
     int     i;
 
@@ -26,10 +29,11 @@ int main(int ac, char **av)
     i = split_args(&strs,av + 1," ");
     a = fill_list(i,strs);
     check_dup(strs);
-    // sort_3(&a);
-    sort(&a);
-    
+    sort_100(&a,&b);
 
+    // sort_3(&a,&b);
+    // ft_run(&ft_pb, &a, &b);
+    // ft_place_smallest_first(&a,&b);
     // sort_stack(&a);
     //ft_sx(a);
     // printStack(&a);
