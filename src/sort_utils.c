@@ -44,6 +44,22 @@ int	stack_max(t_stack *stack)
 	return (max);
 }
 
+// int	stack_next_max(t_stack *stack)
+// {
+// 	int	next_max;
+// 	int	prev_max;
+// 	int num;
+
+// 	prev_max = stack_max(stack);
+// 	num = stack->data;
+// 	if (prev_max == stack->data)
+// 		num = stack->data;
+// 	while (stack)
+// 	{
+// 		if (prev_max < num)
+// 			prev_max = num		
+// 	}
+// }
 int	min(int a, int b)
 {
 	if (a <= b)
@@ -69,6 +85,23 @@ int		ft_find_smallest_index(t_stack *stack_a)
 	return (idx);
 }
 
+int		ft_find_biggest_index(t_stack *stack_a)
+{
+	int	idx;
+	int max_nbr;
+
+	idx = 0;
+	max_nbr = stack_max(stack_a);
+	while (stack_a)
+	{
+		if (stack_a->data == max_nbr)
+			return (idx);
+		else 
+			idx++;
+		stack_a = stack_a->link;
+	}
+	return (idx);
+}
 
 void	ft_place_smallest_first(t_stack **stack_a, t_stack **stack_b)
 {	
@@ -84,3 +117,42 @@ void	ft_place_smallest_first(t_stack **stack_a, t_stack **stack_b)
 			ft_run(&ft_rra, stack_a, stack_b);
 	}
 }
+
+void	ft_place_biggest_first(t_stack **stack_a, t_stack **stack_b)
+{	
+	stack_b = 0;
+	
+	if (ft_find_biggest_index(*stack_b) == 0)
+		return ;
+	while (ft_find_biggest_index(*stack_b) != 0)
+	{
+		if (ft_find_biggest_index(*stack_b) <=  ft_stacksize(*stack_b) / 2)
+			ft_run(&ft_ra, stack_a, stack_b);
+		else if (ft_find_biggest_index(*stack_b) > ft_stacksize(*stack_b) / 2)
+			ft_run(&ft_rra, stack_a, stack_b);
+	}
+}
+
+void	ft_rotate_same(t_stack **stack_a, t_stack **stack_b)
+{
+	stack_b = 0;
+	if (ft_find_biggest_index(*stack_b) == 0 && ft_find_smallest_index(*stack_a))
+		return ;
+	while ((ft_find_biggest_index(*stack_b) !=0) && (ft_find_smallest_index(*stack_a) != 0))
+	{
+		if ((ft_find_smallest_index(*stack_a) <= ft_stacksize(*stack_a) / 2) &&
+			ft_find_biggest_index(*stack_b) <=  ft_stacksize(*stack_b) / 2)
+			ft_run(&ft_rr, stack_a, stack_b);
+		else if ((ft_find_biggest_index(*stack_b) > ft_stacksize(*stack_b) / 2) &&
+				(ft_find_smallest_index(*stack_a) > ft_stacksize(*stack_a) / 2))
+			ft_run(&ft_rra, stack_a, stack_b);
+	}
+}
+
+// void	ft_rotate_diff(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	stack_b = 0;
+// 	if (ft_find_smallest_index(stack_a) == 0)
+// 		return ;
+// 	while ((ft_find_smallest_index))
+// }

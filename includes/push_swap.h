@@ -82,11 +82,10 @@ int         check_if_int(char *str);
 
 void        printStack(t_stack **s);
 
-void        sort_stack(t_stack **s);
-
 int         is_sorted(t_stack **s);
 
 void	    sort_3(t_stack **stack_a, t_stack **stack_b);
+void	    sort_4(t_stack **stack_a, t_stack **stack_b);
 void	    sort_5(t_stack **stack_a, t_stack **stack_b);
 void	    sort_100(t_stack **stack_a, t_stack **stack_b);
 
@@ -102,3 +101,19 @@ void    ft_run(t_operation op, t_stack **stack_a, t_stack **stack_b);
 
 void	ft_place_smallest_first(t_stack **stack_a, t_stack **stack_b);
 int		ft_find_smallest_index(t_stack *stack_a);
+
+void    sort_stack(t_stack *s);
+int	    *put_stack_in_arr(t_stack *stack_a);
+
+void	sort_arr(int *arr, int size);
+
+// void	ft_lis(int *arr, int size);
+
+int		ft_find_biggest_index(t_stack *stack_a);
+void	ft_place_biggest_first(t_stack **stack_a, t_stack **stack_b);
+
+void	insertion_sort(int *arr, int size);
+// int	    longestSubSeq(int *arr, int size);
+
+int lis(int *arr, int n);
+void	ft_rotate_same(t_stack **stack_a, t_stack **stack_b);

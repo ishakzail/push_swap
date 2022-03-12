@@ -101,6 +101,8 @@ int    check_if_int(char *str)
     int i;
 
     i = 0;
+    if ((str[i] == '+' || str[i] == '-') && !ft_isdigit(str[++i]))
+        return (0);
     if (str[i] == '+' || str[i] == '-')
             i++;
     while (str[i])
@@ -148,7 +150,6 @@ t_stack    *fill_list(int ac, char **input)
     t_stack *s;
     
     i = ac - 1;
-    
     while (i >= 0)
     {   
         if (!check_if_int(input[i]))
@@ -157,6 +158,7 @@ t_stack    *fill_list(int ac, char **input)
             s = ft_stacknew(ft_atoi(input[i]));
         else
             push_front(&s,ft_atoi(input[i]));
+
         i--;
     }
     return (s);

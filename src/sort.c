@@ -41,32 +41,135 @@ void	sort_3(t_stack **stack_a, t_stack **stack_b)
 		ft_run(&ft_rra,stack_a, stack_b);
 }
 
-void	sort_stack(t_stack *s)
-{
-    t_stack *node;
-    t_stack *tmp;
-    int     var;
 
-    node = s;
-	tmp = NULL;
-	while (node != NULL)
+int	*put_stack_in_arr(t_stack *stack_a)
+{
+	int	*arr;
+	int	i;
+
+	arr = 0;
+	i = 0;
+	arr = (int *)malloc(sizeof(int) * ft_stacksize(stack_a) + 1);
+	while (stack_a)
 	{
-		tmp = node;
-		while (tmp->link != NULL)
+		arr[i] = stack_a->data;
+		stack_a = stack_a->link;
+		i++;
+	}
+	arr[i] = '\0';
+	return (arr);
+}
+
+void	sort_arr(int *arr, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
 		{
-			if (tmp->data > tmp->link->data)
+			if (arr[i] > arr[j])
 			{
-				// printf("tmp->link == %d\n", tmp->link->data);
-				var = tmp->data;
-				tmp->data = tmp->link->data;
-				tmp->link->data = var;
-				// printf("var == %d\n", var);
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
 			}
-			tmp = tmp->link;
+			j++;
 		}
-		node = node->link;
+		i++;
 	}
 }
+void	insertion_sort(int *arr, int size)
+{
+	int step;
+	int	key;
+	int	j;
+
+	step = 1;
+	while (step < size)
+	{
+		key = arr[step];
+		j = step - 1;
+
+		while (key < arr[j] && j >= 0)
+		{
+			arr[j + 1] = arr[j];
+			j--;
+		}
+		arr[j + 1] = key;
+		step++;
+	}
+}
+
+// void	ft_lis(int *arr, int size)
+// {
+// 	int i;
+// 	int prev_len;
+// 	int len;
+// 	int start;
+// 	int *c;
+
+// 	c = (int *)malloc(sizeof(int) * (size + 1));
+// 	i = 0;
+// 	start = 0;
+// 	len = 0;
+// 	prev_len = 0;
+// 	while (arr[i] < size)
+// 	{
+// 		if (arr[i + 1] > arr[i])
+// 		{
+// 			len++;
+// 			if (len > prev_len)
+// 			{
+// 				prev_len = len;
+// 				start = i + 1 - len;
+// 			}
+// 		}
+// 		else 
+// 		{
+// 			prev_len = len;
+// 			len = 0;
+// 		}
+// 		i++;
+// 	}
+// 	i = -1;
+// 	while (++i <= prev_len)
+// 	{
+// 		c[i] = arr[start+i];
+// 		printf("c[%d] == %d\n",i, c[i]);
+// 	} 
+// }
+
+// void	sort_stack(t_stack *s)
+// {
+//     t_stack *node;
+//     t_stack *tmp;
+//     int     var;
+
+//     node = s;
+// 	tmp = NULL;
+// 	while (node != NULL)
+// 	{
+// 		tmp = node;
+// 		while (tmp->link != NULL)
+// 		{
+// 			if (tmp->data > tmp->link->data)
+// 			{
+// 				// printf("tmp->link == %d\n", tmp->link->data);
+// 				var = tmp->data;
+// 				tmp->data = tmp->link->data;
+// 				tmp->link->data = var;
+// 				// printf("var == %d\n", var);
+// 			}
+// 			tmp = tmp->link;
+// 		}
+// 		node = node->link;
+// 	}
+// }
 
 // void	sort_big(t_stack **stack_a, t_stack **stack_b)
 // {
@@ -92,15 +195,35 @@ void	sort_4(t_stack **stack_a, t_stack **stack_b)
 	ft_run (&ft_pa,stack_a, stack_b);
 }
 
+// int	max_arr(int *arr, int size)
+// {
+// 	int	max;
+// 	int i;
+
+// 	i = 0;
+// 	max = 0;
+// 	while (arr[i] != '\0')
+// 	{
+// 		if (arr[i] > max)
+// 			max = arr[i];
+// 		i++;
+// 	}
+// 	return (max);
+// }
+
+int ft_max(int num1, int num2)
+{
+    return (num1 > num2 ) ? num1 : num2;
+}
+
 void	sort_100(t_stack **stack_a, t_stack **stack_b)
 {
-	while (*stack_a)
-	{
-		ft_place_smallest_first(stack_a, stack_b);
+	
+	while (ft_stacksize(*stack_a) >= 5)
 		ft_run(&ft_pb,stack_a, stack_b);
-	}
 	while (*stack_b)
-		ft_run(&ft_pa,stack_a, stack_b); 	
+		ft_rotate_same(stack_a, stack_b);
+	
 }
 
 int     is_sorted(t_stack **s)
@@ -117,21 +240,23 @@ int     is_sorted(t_stack **s)
 // int *set_groups(t_stack *stack)
 // {
 //     int count;
-//     int size;
-//     t_stack *tab;
+//     int size_stack;
+//     int *tab;
 //     int i;
+// 	int j;
 //     int find;
 // 	int traverse;
 
-// 	size = ft_stacksize(stack);
-//     tab = (t_stack)malloc(size);
+// 	size_stack = ft_stacksize(stack);
+// 	tab = (int *)malloc(sizeof(int) * (size_stack + 1));
+//     tab = put_stack_in_arr(stack);
 //     i = 0;
-//     while (i < size)
+//     while (i < size_stack)
 //     {
 //         j = i;
-//         int per_grp = tab->data;
+//         int per_grp = tab[i];
 //         traverse = 0;
-//        while (traverse < size)
+//        while (traverse < size_stack)
 // 	    {
 // 		    if (per_grp < a[j])
 // 		    {
@@ -143,7 +268,7 @@ int     is_sorted(t_stack **s)
 //                 // tab[j] = false;
 //             // }
 // 		    j++;
-// 		    j = j % size;
+// 		    j = j % size_stack;
 // 		    traverse++;
 // 	    }
 //         tab[i] = count;
