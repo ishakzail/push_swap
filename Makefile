@@ -17,7 +17,7 @@ AR = ar -rcs
 RM = rm -f
 LIBFT = ./includes/libft
 
-MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/operations.c\
+MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/sort_big_utils.c  ./src/operations.c\
 
 OBJS = $(MANDATORY:.c=.o)
 

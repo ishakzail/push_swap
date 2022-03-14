@@ -116,4 +116,16 @@ void	insertion_sort(int *arr, int size);
 // int	    longestSubSeq(int *arr, int size);
 
 int lis(int *arr, int n);
-void	ft_rotate_same(t_stack **stack_a, t_stack **stack_b);
+// void	ft_rotate_same(t_stack **stack_a, t_stack **stack_b);
+
+int	stack_idx_mid(t_stack *stack, int num);
+void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b);
+void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b);
+void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b);
+int	stack_idx_minmax(t_stack *stack, int num);
+int	stack_idx_mid(t_stack *stack, int num);
+
+void	sort_final(t_stack **stack_a, t_stack **stack_b);
+void	sort(t_stack **stack_a, t_stack **stack_b);
+
+void	sort_bigg(t_stack **a, t_stack **b);

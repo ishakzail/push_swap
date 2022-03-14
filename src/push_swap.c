@@ -53,8 +53,9 @@ int main(int ac, char **av)
     // printf("tmp == %d",tmp[2]);
     // sort_stack(tmp);
     // set_groups();
-    
-    // sort_100(&a,&b);
+    // if (!is_sorted(&a))
+    // sort(&a, &b);
+    // sort_bigg(&a, &b);
     // sort_stack(&a);
     // while (i--)
     //     printf("i == %d || strs == %s\n",i, strs[i]);
@@ -72,7 +73,9 @@ int main(int ac, char **av)
     // is_sorted(&a) ? printf("==== YES ====\n") : printf(" ==== NO ====\n");
     // printf("arg1 == %d\n",ft_atoi(strs[0]));
     // ft_rrx(&a,&b);
-    ft_rotate_same(&a,&b);
+    sort_bigg(&a,&b);
+
+    // printf("stack idx mid == %d\n",stack_idx_mid(a, ft_stacksize(a)));
     printStack(&a);
     printStack(&b);
     // sleep(3);

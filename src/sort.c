@@ -195,36 +195,73 @@ void	sort_4(t_stack **stack_a, t_stack **stack_b)
 	ft_run (&ft_pa,stack_a, stack_b);
 }
 
-// int	max_arr(int *arr, int size)
-// {
-// 	int	max;
-// 	int i;
-
-// 	i = 0;
-// 	max = 0;
-// 	while (arr[i] != '\0')
-// 	{
-// 		if (arr[i] > max)
-// 			max = arr[i];
-// 		i++;
-// 	}
-// 	return (max);
-// }
-
 int ft_max(int num1, int num2)
 {
     return (num1 > num2 ) ? num1 : num2;
 }
 
-void	sort_100(t_stack **stack_a, t_stack **stack_b)
+void	sort_bigg(t_stack **a, t_stack **b)
 {
-	
-	while (ft_stacksize(*stack_a) >= 5)
-		ft_run(&ft_pb,stack_a, stack_b);
-	while (*stack_b)
-		ft_rotate_same(stack_a, stack_b);
-	
+	int a_size;
+
+	a_size = ft_stacksize(*a);
+	while (ft_stacksize(*a) > a_size / 2)
+		ft_run(&ft_pb, a, b);
+	while (ft_stacksize(*b))
+	{	
+		ft_place_biggest_first(a, b);
+		// // ft_place_smallest_first(a, b);
+		// ft_run(&ft_pa, a , b);
+	}
+	//while(ft_stacksize(*b))
+		
 }
+// void	sort_100(t_stack **stack_a, t_stack **stack_b)
+// {
+	
+// 	int		a;
+// 	int		b;
+
+// 	while (ft_stacksize(*stack_a) > 3)
+// 		ft_run(&ft_pb, stack_a, stack_b);
+// 	sort_3(stack_a,stack_b);
+// 	while (ft_stacksize(*stack_b))
+// 	{
+// 		a = 0;
+// 		b = 0;
+// 		get_min_rotate(*stack_a, *stack_b, &a, &b);
+// 		if ((a >= 0 && b >= 0) || (a < 0 && b < 0))
+// 			rotate_same(stack_a, stack_b, a, b);
+// 		else
+// 			rotate_diff(stack_a, stack_b, a, b);
+// 		ft_run(&ft_pa, stack_a, stack_b);
+// 	}
+// 	sort_final(stack_a, stack_b);
+// }
+
+// void	sort_final(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	const int	i = stack_idx_minmax(*stack_a, stack_min(*stack_a));
+
+// 	if (i < 0)
+// 		ft_run(&ft_rra, stack_a, stack_b);
+// 	else
+// 		ft_run(&ft_ra, stack_a, stack_b);
+// }
+
+// void	sort(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	if (ft_stacksize(*stack_a) == 2)
+// 		ft_run(&ft_sa, stack_a, stack_b);
+// 	if (ft_stacksize(*stack_a) == 3)
+// 		sort_3(stack_a, stack_b);
+// 	else if (ft_stacksize(*stack_a) == 4)
+// 		sort_4(stack_a, stack_b);
+// 	else if (ft_stacksize(*stack_a) == 5)
+// 		sort_5(stack_a, stack_b);
+// 	else if (ft_stacksize(*stack_a) > 5)
+// 		sort_100(stack_a, stack_b);
+// }
 
 int     is_sorted(t_stack **s)
 {

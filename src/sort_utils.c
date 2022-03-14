@@ -120,34 +120,33 @@ void	ft_place_smallest_first(t_stack **stack_a, t_stack **stack_b)
 
 void	ft_place_biggest_first(t_stack **stack_a, t_stack **stack_b)
 {	
-	stack_b = 0;
+	stack_a = 0;
 	
 	if (ft_find_biggest_index(*stack_b) == 0)
 		return ;
 	while (ft_find_biggest_index(*stack_b) != 0)
 	{
 		if (ft_find_biggest_index(*stack_b) <=  ft_stacksize(*stack_b) / 2)
-			ft_run(&ft_ra, stack_a, stack_b);
+			ft_run(&ft_rb, stack_a, stack_b);
 		else if (ft_find_biggest_index(*stack_b) > ft_stacksize(*stack_b) / 2)
-			ft_run(&ft_rra, stack_a, stack_b);
+			ft_run(&ft_rrb, stack_a, stack_b);
 	}
 }
 
-void	ft_rotate_same(t_stack **stack_a, t_stack **stack_b)
-{
-	stack_b = 0;
-	if (ft_find_biggest_index(*stack_b) == 0 && ft_find_smallest_index(*stack_a))
-		return ;
-	while ((ft_find_biggest_index(*stack_b) !=0) && (ft_find_smallest_index(*stack_a) != 0))
-	{
-		if ((ft_find_smallest_index(*stack_a) <= ft_stacksize(*stack_a) / 2) &&
-			ft_find_biggest_index(*stack_b) <=  ft_stacksize(*stack_b) / 2)
-			ft_run(&ft_rr, stack_a, stack_b);
-		else if ((ft_find_biggest_index(*stack_b) > ft_stacksize(*stack_b) / 2) &&
-				(ft_find_smallest_index(*stack_a) > ft_stacksize(*stack_a) / 2))
-			ft_run(&ft_rra, stack_a, stack_b);
-	}
-}
+// void	ft_rotate_same(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	// if (ft_find_biggest_index(*stack_b) == 0 && ft_find_smallest_index(*stack_a) == 0)
+// 	// 	return ;
+// 	while ((ft_find_biggest_index(*stack_b) !=0) || (ft_find_smallest_index(*stack_a) != 0))
+// 	{
+// 		if ((ft_find_smallest_index(*stack_a) <= ft_stacksize(*stack_a) / 2) &&
+// 			ft_find_biggest_index(*stack_b) <=  ft_stacksize(*stack_b) / 2)
+// 			ft_run(&ft_rr, stack_a, stack_b);
+// 		else if ((ft_find_biggest_index(*stack_b) > ft_stacksize(*stack_b) / 2) &&
+// 				(ft_find_smallest_index(*stack_a) > ft_stacksize(*stack_a) / 2))
+// 			ft_run(&ft_rrr, stack_a, stack_b);
+// 	}
+// }
 
 // void	ft_rotate_diff(t_stack **stack_a, t_stack **stack_b)
 // {
