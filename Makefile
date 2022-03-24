@@ -11,11 +11,13 @@
 # **************************************************************************** #
 
 HEADER = ./includes/push_swap.h
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar -rcs
 RM = rm -f
 LIBFT = ./includes/libft
+
+NAME = push_swap
 
 MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/sort_big_utils.c  ./src/operations.c\
 
@@ -24,20 +26,20 @@ OBJS = $(MANDATORY:.c=.o)
 %.o : %.c 
 	$(CC) $(CFLAGS) -c $< -o $@
 
-push_swap : $(OBJS)  libft
-			gcc -o $@ -L$(LIBFT) $(OBJS) -lft
+$(NAME) : $(OBJS)  libft
+			$(CC) -o $@ -L$(LIBFT) $(OBJS) -lft
 
-all: push_swap
+all: $(NAME)
 
 libft:
 	make -C $(LIBFT)
 
 clean: 
-	$(RM) $(OBJS)
+	$(RM) $(NAME)
 	make -C  $(LIBFT) fclean
 
 fclean: clean 
-	 $(RM) push_swap
+	 $(RM) $(NAME)
 
 re: fclean all
 
