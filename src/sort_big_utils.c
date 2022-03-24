@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-int	stack_idx_mid(t_stack *stack, int num)
+static int	stack_idx_mid(t_stack *stack, int num)
 {
 	int			current;
 	int			next;
@@ -22,8 +22,8 @@ int	stack_idx_mid(t_stack *stack, int num)
 	ret = 1;
 	while (stack->link)
 	{
-		current = stack->data;
-		next = stack->link->data;
+		current = (stack->data);
+		next = (stack->link->data);
 		if (num > current && num < next)
 			break ;
 		++ret;
@@ -50,7 +50,7 @@ int	stack_idx_minmax(t_stack *stack, int num)
 		++ret;
 	while (stack)
 	{
-		if (stack->data == x)
+		if ((stack->data) == x)
 			break ;
 		++ret;
 		stack = stack->link;
@@ -71,7 +71,7 @@ void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b)
 	x = -1;
 	while (stack_b && ++x >= 0)
 	{
-		num = stack_b->data;
+		num = (stack_b->data);
 		if (num < stack_min(stack_a) || num > stack_max(stack_a))
 			i = stack_idx_minmax(stack_a, num);
 		else
@@ -84,6 +84,7 @@ void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b)
 			*a = i;
 			*b = j;
 		}
+		// printf("AFTER ==> a == %d || b == %d\n", *a, *b);
 		stack_b = stack_b->link;
 	}
 }
@@ -92,20 +93,19 @@ void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b)
 {
 	if (a >= 0 && b >= 0)
 	{
-        // printf("a == %d || b == %d\n", a, b);
-		ft_run(&ft_rr, stack_a, stack_b);
+		ft_run("rr", stack_a, stack_b, min(ft_abs(a), ft_abs(b)));
 		if (ft_abs(a) <= ft_abs(b))
-            ft_run(&ft_rb, 0, stack_b);
+			ft_run("rb", stack_b, 0, ft_abs(ft_abs(a) - ft_abs(b)));
 		else
-            ft_run(&ft_ra, stack_a, 0);
+			ft_run("ra", stack_a, 0, ft_abs(ft_abs(a) - ft_abs(b)));
 	}
 	else
 	{
-        ft_run(&ft_rrr, stack_a, stack_b);
+		ft_run("rrr", stack_a, stack_b, min(ft_abs(a), ft_abs(b)));
 		if (ft_abs(a) <= ft_abs(b))
-            ft_run(&ft_rrb, 0, stack_b);
+			ft_run("rrb", stack_b, 0, ft_abs(ft_abs(a) - ft_abs(b)));
 		else
-            ft_run(&ft_rra, stack_a, 0);
+			ft_run("rra", stack_a, 0, ft_abs(ft_abs(a) - ft_abs(b)));
 	}
 }
 
@@ -113,12 +113,12 @@ void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b)
 {
 	if (a >= 0 && b < 0)
 	{
-        ft_run(&ft_ra, stack_a, 0);
-        ft_run(&ft_rrb, 0, stack_b);
+		ft_run("ra", stack_a, 0, a);
+		ft_run("rrb", stack_b, 0, ft_abs(min(a, b)));
 	}
 	else
 	{
-        ft_run(&ft_rb, 0, stack_b);
-        ft_run(&ft_rra, stack_a, 0);
+		ft_run("rb", stack_b, 0, b);
+		ft_run("rra", stack_a, 0, ft_abs(min(a, b)));
 	}
 }

@@ -12,98 +12,171 @@
 
 #include "../includes/push_swap.h"
 
-void	sort_3(t_stack **stack_a, t_stack **stack_b)
-{
-	int	num_1;
-	int	num_2;
-	int	num_3;
 
-	num_1 = (*stack_a)->data;
-	num_2 = (*stack_a)->link->data;
-	num_3 = (*stack_a)->link->link->data;
-	if (stack_a == NULL)
-		return ;
-	if (num_1 > num_2 && num_1 < num_3)
-		ft_run(&ft_sa,stack_a,stack_b);
-	else if (num_1 > num_2 && num_2 > num_3)
+static void	sort_3(t_stack **stack)
+{
+	const int	num_1 = (*stack)->data;
+	const int	num_2 = (*stack)->link->data;
+	const int	num_3 = (*stack)->link->link->data;
+
+	if (num_1 == stack_min(*stack) && num_2 == stack_max(*stack))
 	{
-		ft_run(&ft_sa, stack_a, stack_b);
-		ft_run(&ft_rra, stack_a, stack_b);
+		ft_run("sa", stack, 0, 1);
+		ft_run("ra", stack, 0, 1);
 	}
-	else if (num_1 > num_2 && num_2 < num_3)
-		ft_run(&ft_ra,stack_a, stack_b);
-	else if (num_1 < num_2 && num_2 > num_3)
+	else if (num_2 == stack_min(*stack) && num_3 == stack_max(*stack))
+		ft_run("sa", stack, 0, 1);
+	else if (num_3 == stack_min(*stack) && num_2 == stack_max(*stack))
+		ft_run("rra", stack, 0, 1);
+	else if (num_2 == stack_min(*stack) && num_1 == stack_max(*stack))
+		ft_run("ra", stack, 0, 1);
+	else
 	{
-		ft_run(&ft_sa, stack_a, stack_b);
-		ft_run(&ft_ra, stack_a, stack_b);
+		ft_run("sa", stack, 0, 1);
+		ft_run("rra", stack, 0, 1);
 	}
-	else if (num_1 > num_2 && num_2 > num_3)
-		ft_run(&ft_rra,stack_a, stack_b);
+}
+
+static void	sort_big(t_stack **stack_a)
+{
+	int		a;
+	int		b;
+	t_stack	*stack_b;
+
+	stack_b = 0;
+	while (ft_stacksize(*stack_a) > 3)
+		ft_run("pb", stack_a, &stack_b, 1);
+	if (!is_sorted(*stack_a))
+		sort_3(stack_a);
+	while (ft_stacksize(stack_b))
+	{
+		a = 0;
+		b = 0;
+		get_min_rotate(*stack_a, stack_b, &a, &b);
+		// printf("AFTER ==> a == %d || b == %d\n", a, b);
+		if ((a >= 0 && b >= 0) || (a < 0 && b < 0))
+			rotate_same(stack_a, &stack_b, a, b);
+		else
+			rotate_diff(stack_a, &stack_b, a, b);
+		ft_run("pa", &stack_b, stack_a, 1);
+	}
+}
+
+static void	sort_final(t_stack **stack)
+{
+	const int	i = stack_idx_minmax(*stack, stack_min(*stack));
+
+	if (i < 0)
+		ft_run("rra", stack, 0, -i);
+	else
+		ft_run("ra", stack, 0, i);
+}
+
+void	sort(t_stack **stack)
+{
+	if (ft_stacksize(*stack) == 2)
+		ft_run("sa", stack, 0, 1);
+	else if (ft_stacksize(*stack) == 3)
+		sort_3(stack);
+	else
+		sort_big(stack);
+	sort_final(stack);
 }
 
 
-int	*put_stack_in_arr(t_stack *stack_a)
-{
-	int	*arr;
-	int	i;
 
-	arr = 0;
-	i = 0;
-	arr = (int *)malloc(sizeof(int) * ft_stacksize(stack_a) + 1);
-	while (stack_a)
-	{
-		arr[i] = stack_a->data;
-		stack_a = stack_a->link;
-		i++;
-	}
-	arr[i] = '\0';
-	return (arr);
-}
+// void	sort_3(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int	num_1;
+// 	int	num_2;
+// 	int	num_3;
 
-void	sort_arr(int *arr, int size)
-{
-	int	i;
-	int	j;
-	int	tmp;
+// 	num_1 = (*stack_a)->data;
+// 	num_2 = (*stack_a)->link->data;
+// 	num_3 = (*stack_a)->link->link->data;
+// 	if (stack_a == NULL)
+// 		return ;
+// 	if (num_1 > num_2 && num_1 < num_3)
+// 		ft_run(&ft_sa,stack_a,stack_b);
+// 	else if (num_1 > num_2 && num_2 > num_3)
+// 	{
+// 		ft_run(&ft_sa, stack_a, stack_b);
+// 		ft_run(&ft_rra, stack_a, stack_b);
+// 	}
+// 	else if (num_1 > num_2 && num_2 < num_3)
+// 		ft_run(&ft_ra,stack_a, stack_b);
+// 	else if (num_1 < num_2 && num_2 > num_3)
+// 	{
+// 		ft_run(&ft_sa, stack_a, stack_b);
+// 		ft_run(&ft_ra, stack_a, stack_b);
+// 	}
+// 	else if (num_1 > num_2 && num_2 > num_3)
+// 		ft_run(&ft_rra,stack_a, stack_b);
+// }
 
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (arr[i] > arr[j])
-			{
-				tmp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-void	insertion_sort(int *arr, int size)
-{
-	int step;
-	int	key;
-	int	j;
 
-	step = 1;
-	while (step < size)
-	{
-		key = arr[step];
-		j = step - 1;
+// int	*put_stack_in_arr(t_stack *stack_a)
+// {
+// 	int	*arr;
+// 	int	i;
 
-		while (key < arr[j] && j >= 0)
-		{
-			arr[j + 1] = arr[j];
-			j--;
-		}
-		arr[j + 1] = key;
-		step++;
-	}
-}
+// 	arr = 0;
+// 	i = 0;
+// 	arr = (int *)malloc(sizeof(int) * ft_stacksize(stack_a) + 1);
+// 	while (stack_a)
+// 	{
+// 		arr[i] = stack_a->data;
+// 		stack_a = stack_a->link;
+// 		i++;
+// 	}
+// 	arr[i] = '\0';
+// 	return (arr);
+// }
+
+// void	sort_arr(int *arr, int size)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	tmp;
+
+// 	i = 0;
+// 	while (i < size)
+// 	{
+// 		j = i + 1;
+// 		while (j < size)
+// 		{
+// 			if (arr[i] > arr[j])
+// 			{
+// 				tmp = arr[i];
+// 				arr[i] = arr[j];
+// 				arr[j] = tmp;
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+// void	insertion_sort(int *arr, int size)
+// {
+// 	int step;
+// 	int	key;
+// 	int	j;
+
+// 	step = 1;
+// 	while (step < size)
+// 	{
+// 		key = arr[step];
+// 		j = step - 1;
+
+// 		while (key < arr[j] && j >= 0)
+// 		{
+// 			arr[j + 1] = arr[j];
+// 			j--;
+// 		}
+// 		arr[j + 1] = key;
+// 		step++;
+// 	}
+// }
 
 // void	ft_lis(int *arr, int size)
 // {
@@ -176,46 +249,42 @@ void	insertion_sort(int *arr, int size)
 
 // }
 
-void	sort_5(t_stack **stack_a, t_stack **stack_b)
-{
-	ft_place_smallest_first(stack_a,stack_b);
-	ft_run(&ft_pb,stack_a, stack_b);
-	ft_place_smallest_first(stack_a,stack_b);
-	ft_run(&ft_pb,stack_a, stack_b);
-	sort_3(stack_a,stack_b);
-	ft_run (&ft_pa,stack_a, stack_b);
-	ft_run (&ft_pa,stack_a, stack_b);
-}
+// void	sort_5(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	ft_place_smallest_first(stack_a,stack_b);
+// 	ft_run(&ft_pb,stack_a, stack_b);
+// 	ft_place_smallest_first(stack_a,stack_b);
+// 	ft_run(&ft_pb,stack_a, stack_b);
+// 	sort_3(stack_a,stack_b);
+// 	ft_run (&ft_pa,stack_a, stack_b);
+// 	ft_run (&ft_pa,stack_a, stack_b);
+// }
 
-void	sort_4(t_stack **stack_a, t_stack **stack_b)
-{
-	ft_place_smallest_first(stack_a,stack_b);
-	ft_run(&ft_pb,stack_a, stack_b);
-	sort_3(stack_a,stack_b);
-	ft_run (&ft_pa,stack_a, stack_b);
-}
+// void	sort_4(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	ft_place_smallest_first(stack_a,stack_b);
+// 	ft_run(&ft_pb,stack_a, stack_b);
+// 	sort_3(stack_a,stack_b);
+// 	ft_run (&ft_pa,stack_a, stack_b);
+// }
 
-int ft_max(int num1, int num2)
-{
-    return (num1 > num2 ) ? num1 : num2;
-}
 
-void	sort_bigg(t_stack **a, t_stack **b)
-{
-	int a_size;
+// void	sort_bigg(t_stack **a, t_stack **b)
+// {
+// 	int a_size;
 
-	a_size = ft_stacksize(*a);
-	while (ft_stacksize(*a) > a_size / 2)
-		ft_run(&ft_pb, a, b);
-	while (ft_stacksize(*b))
-	{	
-		ft_place_biggest_first(a, b);
-		// // ft_place_smallest_first(a, b);
-		// ft_run(&ft_pa, a , b);
-	}
-	//while(ft_stacksize(*b))
+// 	a_size = ft_stacksize(*a);
+// 	while (ft_stacksize(*a) > a_size / 2)
+// 		ft_run(&ft_pb, a, b);
+// 	while (ft_stacksize(*b))
+// 	{	
+// 		ft_place_biggest_first(a, b);
+// 		// // ft_place_smallest_first(a, b);
+// 		// ft_run(&ft_pa, a , b);
+// 	}
+// 	//while(ft_stacksize(*b))
 		
-}
+// }
 // void	sort_100(t_stack **stack_a, t_stack **stack_b)
 // {
 	
@@ -236,7 +305,7 @@ void	sort_bigg(t_stack **a, t_stack **b)
 // 			rotate_diff(stack_a, stack_b, a, b);
 // 		ft_run(&ft_pa, stack_a, stack_b);
 // 	}
-// 	sort_final(stack_a, stack_b);
+// 	// sort_final(stack_a, stack_b);
 // }
 
 // void	sort_final(t_stack **stack_a, t_stack **stack_b)
@@ -263,13 +332,13 @@ void	sort_bigg(t_stack **a, t_stack **b)
 // 		sort_100(stack_a, stack_b);
 // }
 
-int     is_sorted(t_stack **s)
+int     is_sorted(t_stack *s)
 {
-    while ((*s)->link != NULL)
+    while (s->link)
     {
-        if ((*s)->data > (*s)->link->data)
+        if (s->data > s->link->data)
             return (0);
-        (*s) = (*s)->link;
+        s = s->link;
     }
     return (1);
 }

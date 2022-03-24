@@ -192,27 +192,3 @@ int split_args(char ***strs, char **av, char *sep)
         ret++;
     return (ret);
 }
-
-// int	is_valid(char **strs)
-// {
-// 	int	i;
-// 	int	tmp;
-// 	int	ret;
-// 	int	*nums;
-
-// 	i = 0;
-// 	ret = 0;
-// 	while (strs[i])
-// 		if (!is_int(strs[i++]))
-// 			return (ret);
-// 	nums = malloc(sizeof(int) * i);
-// 	if (!nums)
-// 		return (ret);
-// 	tmp = i;
-// 	while (i--)
-// 		nums[i] = ft_atoi(strs[i]);
-// 	if (!has_duplicate(nums, tmp))
-// 		ret = 1;
-// 	free(nums);
-// 	return (ret);
-// }

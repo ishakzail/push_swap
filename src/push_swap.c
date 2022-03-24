@@ -36,7 +36,10 @@ int main(int ac, char **av)
     //     i--;
     // }
     check_dup(strs);
-    
+    sort(&a);
+    // ft_rrx(&a, &b);
+    // ft_rx(&a, &b);
+    // ft_px(&b, &a);
     // tmp = put_stack_in_arr(a);
     // int size = ft_stacksize(a);
     // ft_lis(tmp, size);
@@ -73,11 +76,11 @@ int main(int ac, char **av)
     // is_sorted(&a) ? printf("==== YES ====\n") : printf(" ==== NO ====\n");
     // printf("arg1 == %d\n",ft_atoi(strs[0]));
     // ft_rrx(&a,&b);
-    sort_bigg(&a,&b);
-
+    // sort_bigg(&a,&b);
+    // sort(&a, &b);
     // printf("stack idx mid == %d\n",stack_idx_mid(a, ft_stacksize(a)));
-    printStack(&a);
-    printStack(&b);
-    // sleep(3);
+    // printStack(&a);
+    // printStack(&b);
+    // sleep(300);
     return (0);
 }
