@@ -1,52 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   stack_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 12:37:41 by izail             #+#    #+#             */
-/*   Updated: 2022/03/25 20:36:54 by izail            ###   ########.fr       */
+/*   Created: 2022/03/25 16:37:26 by izail             #+#    #+#             */
+/*   Updated: 2022/03/25 20:44:45 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	stack_min(t_stack *stack)
+void	ft_swap(t_stack *s)
 {
-	int		min;
-	int		num;
+	int	tmpvar;
 
-	min = stack->data;
-	while (stack)
-	{
-		num = stack->data;
-		if (min > num)
-			min = num;
-		stack = stack->link;
-	}
-	return (min);
+	tmpvar = s->data;
+	s->data = s->link->data;
+	s->link->data = tmpvar;
 }
 
-int	stack_max(t_stack *stack)
+void	ft_rotate(t_stack **s)
 {
-	int		max;
-	int		num;
+	t_stack	*first;
+	t_stack	*last;
 
-	max = stack->data;
-	while (stack)
-	{
-		num = stack->data;
-		if (max < num)
-			max = num;
-		stack = stack->link;
-	}
-	return (max);
+	first = *s;
+	last = *s;
+	while (last->link != NULL)
+		last = last->link;
+	(*s) = first->link;
+	first->link = NULL;
+	last->link = first;
 }
 
-int	min(int a, int b)
+void	reverse(t_stack **s)
 {
-	if (a <= b)
-		return (a);
-	return (b);
+	t_stack	*tmp;
+
+	tmp = stacklast(s);
+	push_front(s, tmp->data);
+	pop_back(s);
 }

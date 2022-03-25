@@ -19,28 +19,36 @@ LIBFT = ./includes/libft
 
 NAME = push_swap
 
-MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/sort_big_utils.c  ./src/operations.c\
+MANDATORY = ./src/push_swap.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/sort_big_utils.c  ./src/operations.c ./src/check.c ./src/stack_utils.c ./src/stack_utils_2.c
+BONUS = ./src/checker.c ./src/get_next_line.c ./src/push_swap_utils.c  ./src/sort_utils.c ./src/sort.c ./src/sort_big_utils.c  ./src/operations.c ./src/check.c ./src/stack_utils.c ./src/stack_utils_2.c\
 
 OBJS = $(MANDATORY:.c=.o)
+
+OBJS_B = $(BONUS:.c=.o)
 
 %.o : %.c 
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME) : $(OBJS)  libft
+push_swap : $(OBJS)  libft
 			$(CC) -o $@ -L$(LIBFT) $(OBJS) -lft
 
-all: $(NAME)
+checker: $(OBJS_B) libft
+	gcc -o $@  -L$(LIBFT) $(OBJS_B) -lft
+
+bonus : $(NAME) checker
+
+all: push_swap
 
 libft:
 	make -C $(LIBFT)
 
 clean: 
-	$(RM) $(NAME)
+	$(RM) push_swap
 	make -C  $(LIBFT) fclean
 
 fclean: clean 
-	 $(RM) $(NAME)
+	 $(RM) checker $(OBJS) $(OBJS_B)
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft bonus

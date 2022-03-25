@@ -6,13 +6,13 @@
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 12:37:27 by izail             #+#    #+#             */
-/*   Updated: 2022/02/12 12:37:34 by izail            ###   ########.fr       */
+/*   Updated: 2022/03/25 20:36:12 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	stack_idx_mid(t_stack *stack, int num)
+int	stack_idx_mid(t_stack *stack, int num)
 {
 	int			current;
 	int			next;
