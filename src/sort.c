@@ -6,7 +6,7 @@
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:11:18 by izail             #+#    #+#             */
-/*   Updated: 2022/03/25 19:35:30 by izail            ###   ########.fr       */
+/*   Updated: 2022/03/25 22:50:16 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	sort_big(t_stack **stack_a)
 		a = 0;
 		b = 0;
 		get_min_rotate(*stack_a, stack_b, &a, &b);
-		// printf("AFTER ==> a == %d || b == %d\n", a, b);
 		if ((a >= 0 && b >= 0) || (a < 0 && b < 0))
 			rotate_same(stack_a, &stack_b, a, b);
 		else

@@ -6,7 +6,7 @@
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:16:06 by izail             #+#    #+#             */
-/*   Updated: 2022/03/25 22:22:27 by izail            ###   ########.fr       */
+/*   Updated: 2022/03/25 22:49:52 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	rotate_same(t_stack **stack_a, t_stack **stack_b, int a, int b);
 void	rotate_diff(t_stack **stack_a, t_stack **stack_b, int a, int b);
 
 void	ps_free(char **strs);
-void 	ft_stackclear(t_stack **stack);
+void	ft_stackclear(t_stack **stack);
 char	*get_next_line(char **str);
 
 #endif

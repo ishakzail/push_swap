@@ -6,7 +6,7 @@
 /*   By: izail <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 12:37:27 by izail             #+#    #+#             */
-/*   Updated: 2022/03/25 20:36:12 by izail            ###   ########.fr       */
+/*   Updated: 2022/03/25 22:50:31 by izail            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	get_min_rotate(t_stack *stack_a, t_stack *stack_b, int *a, int *b)
 			*a = i;
 			*b = j;
 		}
-		// printf("AFTER ==> a == %d || b == %d\n", *a, *b);
 		stack_b = stack_b->link;
 	}
 }
