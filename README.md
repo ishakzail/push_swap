@@ -1,4 +1,4 @@
-# 42cursus - push_swap
+# push_swap
 
 ## Project Information
 
